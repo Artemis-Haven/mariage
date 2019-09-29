@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="overlay"></div>
+    <img src="{{ asset('images/background.jpg') }}" alt="Background" class="background-img">
+
+    <div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-12 my-auto">
+                <div class="masthead-content text-white py-5 py-md-0">
+                <h1 class="mb-3">Bienvenue sur le site de notre mariage !</h1>
+                <p class="mb-5">Ce site n'est pas encore prêt, mais vous pouvez nous laisser votre adresse e-mail pour que l'on vous prévienne dès qu'il sera opérationnel.</p>
+                {{ form_start(form) }}
+                    <div class="input-group input-group-newsletter">
+                            {{ form_widget(form.email, {attr: {'class': 'form-control'}}) }}
+                        <div class="input-group-append">
+                            {{ form_widget(form.submit, {attr: {'class': 'btn btn-secondary'}}) }}
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+
+{% endblock %}

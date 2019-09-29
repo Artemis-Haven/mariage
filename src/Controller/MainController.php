@@ -15,7 +15,7 @@ class MainController extends AbstractController
      * @Route("/", name="homepage")
      * @Template()
      */
-    public function index(Request $request)
+    public function index(Request $request, \Swift_Mailer $mailer)
     {
         $sub = new Subscription();
         $message = null;
@@ -33,6 +33,22 @@ class MainController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($sub);
             $em->flush();
+
+            $email = (new \Swift_Message("Mariage - Quelqu'un a laissé son adresse e-mail"))
+                ->setFrom($this->getParameter('mail_from'))
+                ->setTo($this->getParameter('mail_from'))
+                ->setBody(
+                    $this->renderView(
+                        'emails/subscription.html.twig',
+                        [
+                            'newSub' => $sub,
+                            'allSubs' => $em->getRepository(Subscription::class)->findAll()
+                        ]
+                    ),
+                    'text/html'
+                )
+            ;
+            $mailer->send($email);
         }
 
         return [

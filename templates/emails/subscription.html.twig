@@ -1,0 +1,12 @@
+<strong> Nouvelle inscription ! </strong>
+Le {{ newSub.createdAt|date('d/m/Y \\à H\\hi') }} <br/>
+E-mail : {{ newSub.email }} <br/>
+
+<hr/>
+
+<strong> Précédentes inscriptions : </strong>
+<ul>
+    {% for sub in allSubs if sub != newSub %}
+        <li>Le {{ sub.createdAt|date('d/m/Y \\à H\\hi') }} : {{ sub.email }} </li>
+    {% endfor %}
+</ul>

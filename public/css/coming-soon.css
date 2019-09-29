@@ -36,7 +36,6 @@
     height: auto;
     transform: translateX(-20%) translateY(-20%);
     z-index: 0;
-    filter: saturate(0.3);
   }
   
   @media (pointer: coarse) and (hover: none) {
@@ -76,7 +75,7 @@
     width: 100%;
     min-height: 35rem;
     height: 100%;
-    background-color: rgba(28, 28, 28, 0.8);
+    background-color: rgba(28, 20, 8, 0.8);
     transform: skewY(4deg);
     transform-origin: bottom right;
   }
@@ -208,3 +207,9 @@
     font-weight: 300 !important;
   }
   
+  #thankyou {
+    color: #fff;
+    font-size: 2rem;
+    padding: 5px 0;
+    text-align: center;
+  }

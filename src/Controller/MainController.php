@@ -13,9 +13,20 @@ class MainController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
-     * @Template()
      */
     public function index(Request $request, \Swift_Mailer $mailer)
+    {
+        if ($this->getParameter('coming_soon')) {
+            return $this->comingSoon($request, $mailer);
+        }
+        
+        return $this->render('main/index.html.twig');
+    }
+
+    /**
+     * @Route("/bientot", name="coming_soon")
+     */
+    public function comingSoon(Request $request, \Swift_Mailer $mailer)
     {
         $sub = new Subscription();
         $message = null;
@@ -51,9 +62,9 @@ class MainController extends AbstractController
             $mailer->send($email);
         }
 
-        return [
+        return $this->render('main/coming-soon.html.twig', [
             'message' => $message,
             'form' => $form->createView()
-        ];
+        ]);
     }
 }

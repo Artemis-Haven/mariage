@@ -48,25 +48,14 @@
     }
   }
   
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    /* background-color: #cd9557; */
-    opacity: 0.7;
-    z-index: 1;
-  }
-  
-  .masthead {
+  .coming-soon {
     position: relative;
     overflow: hidden;
     padding-bottom: 3rem;
     z-index: 2;
   }
   
-  .masthead .masthead-bg {
+  .coming-soon .coming-soon-bg {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -80,25 +69,25 @@
     transform-origin: bottom right;
   }
   
-  .masthead .masthead-content h1 {
+  .coming-soon .coming-soon-content h1 {
     font-size: 2.5rem;
   }
   
-  .masthead .masthead-content p {
+  .coming-soon .coming-soon-content p {
     font-size: 1.2rem;
   }
   
-  .masthead .masthead-content p strong {
+  .coming-soon .coming-soon-content p strong {
     font-weight: 700;
   }
   
-  .masthead .masthead-content .input-group-newsletter input {
+  .coming-soon .coming-soon-content .input-group-newsletter input {
     height: auto;
     font-size: 1rem;
     padding: 1rem;
   }
   
-  .masthead .masthead-content .input-group-newsletter button {
+  .coming-soon .coming-soon-content .input-group-newsletter button {
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -107,26 +96,38 @@
   }
   
   @media (min-width: 768px) {
-    .masthead {
+    .coming-soon {
       height: 100%;
       min-height: 0;
       width: 40.5rem;
       padding-bottom: 0;
     }
-    .masthead .masthead-bg {
+    .coming-soon .coming-soon-bg {
       min-height: 0;
       transform: skewX(-8deg);
       transform-origin: top right;
     }
-    .masthead .masthead-content {
+    .coming-soon .coming-soon-content {
       padding-left: 3rem;
       padding-right: 10rem;
     }
-    .masthead .masthead-content h1 {
+    .coming-soon .coming-soon-content h1 {
       font-size: 3rem;
     }
-    .masthead .masthead-content p {
+    .coming-soon .coming-soon-content p {
       font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .coming-soon .coming-soon-content input, .coming-soon .coming-soon-content button {
+      width: 100%;
+      border-radius: .25rem;
+      text-align: center;
+    }
+    .coming-soon .coming-soon-content .input-group-append {
+      width: 100%;
+      margin-top: 10px;
     }
   }
   
@@ -212,4 +213,21 @@
     font-size: 2rem;
     padding: 5px 0;
     text-align: center;
+  }
+  
+  @media (max-width: 767px) {  
+    .background-img {
+      height: 100%;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20%);
+    }
+    
+    .coming-soon {
+      position: static;
+    }
+
+    .coming-soon .coming-soon-bg {
+      transform: none;
+    }
   }

@@ -26,6 +26,67 @@ easy_admin:
                     # if administrators are allowed to edit users' passwords and roles, add this:
                     - { property: 'plainPassword', label: 'Mot de passe', type: 'text', type_options: { required: false } }
                     - { property: 'roles', label: 'Rôles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' } } }
+
+        TextBlock:
+            class: App\Entity\TextBlock
+            label: 'Blocs de texte'
+            list:
+                fields: 
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'content', label: 'Contenu' }
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'content', label: 'Contenu' }
+
+        ListItem:
+            class: App\Entity\ListItem
+            label: 'Eléments de la liste'
+            list:
+                fields: 
+                    - { property: 'ordering', label: 'Etape n°' }
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'price', label: 'Prix' }
+                    - { property: 'link', label: 'Lien', type: 'url' }
+                    - { property: 'gifted', label: 'Financé', type: 'boolean' }
+                    - { property: 'splittable', label: 'Divisible', type: 'boolean' }
+                    - { property: 'lastEditedAt', label: 'Dernière modif.' }
+                sort: 'ordering'
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'description', label: 'Description' }
+                    - { property: 'price', label: 'Prix' }
+                    - { property: 'link', label: 'Lien' }
+                    - { property: 'gifted', label: 'Financé' }
+                    - { property: 'splittable', label: 'Divisible' }
+                    - { property: 'latitude', label: 'Latitude' }
+                    - { property: 'longitude', label: 'Longitude' }
+                    - { property: 'ordering', label: 'Etape n°' }
+
+        Gift:
+            class: App\Entity\Gift
+            label: 'Cadeaux'
+            list:
+                fields: 
+                    - { property: 'giver', label: 'Mécène' }
+                    - { property: 'listItem', label: 'Cadeau' }
+                    - { property: 'amount', label: 'Montant' }
+                    - { property: 'message', label: 'Message' }
+                    - { property: 'createdAt', label: 'Enregistré le' }
+                sort: 'createdAt'
+            form:
+                fields:
+                    - { property: 'giver', label: 'Mécène' }
+                    - { property: 'listItem', label: 'Cadeau' }
+                    - { property: 'amount', label: 'Montant' }
+                    - { property: 'message', label: 'Message' }
+
     design:
         menu:
+            - { label: 'Liste de mariage' }
+            - { entity: 'ListItem', icon: 'tasks', label: 'Configurer la liste' }
+            - { entity: 'Gift', icon: 'gifts', label: 'Voir les cadeaux' }
+            - { label: 'Réglages' }
             - { entity: 'User', icon: 'user', label: 'Utilisateurs' }
+            - { entity: 'TextBlock', icon: 'edit', label: 'Blocs de texte' }

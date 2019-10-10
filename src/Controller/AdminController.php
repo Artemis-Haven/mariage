@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
+use App\Entity\Gift;
 
-class UserAdminController extends EasyAdminController
+class AdminController extends EasyAdminController
 {
     public function createNewUserEntity()
     {
@@ -21,5 +22,13 @@ class UserAdminController extends EasyAdminController
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
         parent::updateEntity($user);
+    }
+
+    
+
+    public function persistGiftEntity($gift)
+    {
+        $gift->setCreatedAt(new \DateTime('now'));
+        parent::persistEntity($gift);
     }
 }

@@ -1,0 +1,31 @@
+easy_admin:
+    site_name: 'Administration'
+    formats:
+        date:     'd/m/Y'
+        time:     'H\hi'
+        datetime: 'd/m/Y \à H\hi'
+
+    entities:
+        User:
+            class: App\Entity\User
+            label: 'Utilisateurs'
+            list:
+                fields: 
+                    - { property: 'username', label: 'Nom' }
+                    - { property: 'email', label: 'E-mail' }
+                    - { property: 'enabled', label: 'Activé' }
+                    - { property: 'lastLogin', label: 'Dernière connexion' }
+                    - { property: 'roles', label: 'Rôles' }
+            search:
+                fields: ['username', 'email', 'enabled', 'lastLogin']
+            form:
+                fields:
+                    - { property: 'username', label: 'Nom' }
+                    - { property: 'email', label: 'E-mail' }
+                    - { property: 'enabled', label: 'Activé' }
+                    # if administrators are allowed to edit users' passwords and roles, add this:
+                    - { property: 'plainPassword', label: 'Mot de passe', type: 'text', type_options: { required: false } }
+                    - { property: 'roles', label: 'Rôles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' } } }
+    design:
+        menu:
+            - { entity: 'User', icon: 'user', label: 'Utilisateurs' }

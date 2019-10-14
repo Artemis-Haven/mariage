@@ -25,3 +25,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+
+    app.listener.disable_registered_user:
+            class: App\Observer\DisableRegisteredUserListener
+            tags:
+                -
+                    name: "kernel.event_listener"
+                    event: "fos_user.registration.initialize"
+                    method: "disableUser"

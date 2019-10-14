@@ -5,6 +5,18 @@ easy_admin:
         time:     'H\hi'
         datetime: 'd/m/Y \à H\hi'
 
+    design:
+        menu:
+            - { label: 'Invités' }
+            - { entity: 'GuestWaiting', icon: 'user-tie', label: 'Invités en attente' }
+            - { entity: 'GuestWhoReplied', icon: 'user-tie', label: 'Invités ayant répondus' }
+            - { label: 'Liste de mariage' }
+            - { entity: 'ListItem', icon: 'tasks', label: 'Configuration' }
+            - { entity: 'Gift', icon: 'gifts', label: 'Cadeaux' }
+            - { label: 'Réglages' }
+            - { entity: 'User', icon: 'user-circle', label: 'Utilisateurs' }
+            - { entity: 'TextBlock', icon: 'edit', label: 'Blocs de texte' }
+
     entities:
         User:
             class: App\Entity\User
@@ -16,6 +28,7 @@ easy_admin:
                     - { property: 'enabled', label: 'Activé' }
                     - { property: 'lastLogin', label: 'Dernière connexion' }
                     - { property: 'roles', label: 'Rôles' }
+                    - { property: 'guests', label: 'Invités' }
             search:
                 fields: ['username', 'email', 'enabled', 'lastLogin']
             form:
@@ -26,6 +39,7 @@ easy_admin:
                     # if administrators are allowed to edit users' passwords and roles, add this:
                     - { property: 'plainPassword', label: 'Mot de passe', type: 'text', type_options: { required: false } }
                     - { property: 'roles', label: 'Rôles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' } } }
+                    - { property: 'guests', label: 'Invités', type_options: { by_reference: false } }
 
         TextBlock:
             class: App\Entity\TextBlock
@@ -82,11 +96,44 @@ easy_admin:
                     - { property: 'amount', label: 'Montant' }
                     - { property: 'message', label: 'Message' }
 
-    design:
-        menu:
-            - { label: 'Liste de mariage' }
-            - { entity: 'ListItem', icon: 'tasks', label: 'Configurer la liste' }
-            - { entity: 'Gift', icon: 'gifts', label: 'Voir les cadeaux' }
-            - { label: 'Réglages' }
-            - { entity: 'User', icon: 'user', label: 'Utilisateurs' }
-            - { entity: 'TextBlock', icon: 'edit', label: 'Blocs de texte' }
+        GuestWaiting:
+            class: App\Entity\Guest
+            label: 'Invités'
+            list:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                sort: 'name'
+                dql_filter: 'entity.answeredAt is null'
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { type: 'section', label: '' }
+                    - { property: 'answered', label: 'Remplir le formulaire de réponse à la place de l''invité ?', type: 'checkbox' }
+                    - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+                    - { property: 'attendMeal', label: 'Participe au repas'}
+                    - { property: 'attendBrunch', label: 'Participe au brunch'}
+                    - { property: 'veggie', label: 'Végétarien.ne'}
+                    - { property: 'specialDiet', label: 'Régime alimentaire spécial'}
+
+        GuestWhoReplied:
+            class: App\Entity\Guest
+            label: 'Invités'
+            list:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'answeredAt', label: 'Date de la réponse' }
+                    - { property: 'attendCeremony', label: 'Cérémonie' }
+                    - { property: 'attendMeal', label: 'Repas' }
+                    - { property: 'attendBrunch', label: 'Brunch' }
+                    - { property: 'veggie', label: 'Végétarien.ne'}
+                    - { property: 'specialDiet', label: 'Régime'}
+                sort: 'answeredAt'
+                dql_filter: 'entity.answeredAt is not null'
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+                    - { property: 'attendMeal', label: 'Participe au repas'}
+                    - { property: 'attendBrunch', label: 'Participe au brunch'}
+                    - { property: 'veggie', label: 'Végétarien.ne'}
+                    - { property: 'specialDiet', label: 'Régime alimentaire spécial'}

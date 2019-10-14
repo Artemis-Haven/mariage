@@ -25,6 +25,11 @@ class User extends BaseUser
      */
     private $gifts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Guest", mappedBy="user")
+     */
+    private $guests;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->gifts = new ArrayCollection();
+        $this->guests = new ArrayCollection();
     }
 
     public function __toString()
@@ -66,6 +72,37 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($gift->getGiver() === $this) {
                 $gift->setGiver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Guest[]
+     */
+    public function getGuests(): Collection
+    {
+        return $this->guests;
+    }
+
+    public function addGuest(Guest $guest): self
+    {
+        if (!$this->guests->contains($guest)) {
+            $this->guests[] = $guest;
+            $guest->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(Guest $guest): self
+    {
+        if ($this->guests->contains($guest)) {
+            $this->guests->removeElement($guest);
+            // set the owning side to null (unless already changed)
+            if ($guest->getUser() === $this) {
+                $guest->setUser(null);
             }
         }
 

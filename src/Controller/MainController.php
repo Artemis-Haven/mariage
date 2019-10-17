@@ -24,6 +24,15 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/validation", name="waiting_for_validation")
+     * @Template
+     */
+    public function waitingForValidation()
+    {
+        return [];
+    }
+
+    /**
      * @Route("/bientot", name="coming_soon")
      */
     public function comingSoon(Request $request, \Swift_Mailer $mailer)

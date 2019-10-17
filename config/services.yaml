@@ -30,8 +30,12 @@ services:
 
     app.listener.disable_registered_user:
             class: App\Observer\DisableRegisteredUserListener
-            tags:
-                -
-                    name: "kernel.event_listener"
-                    event: "fos_user.registration.initialize"
-                    method: "disableUser"
+            arguments: [ "@router" ]
+            tags: 
+                - { name: "kernel.event_listener", event: "fos_user.registration.initialize" }
+
+    app.listener.redirect_unregistered_user:
+            class: App\Observer\DisableRegisteredUserListener
+            arguments: [ "@router" ]
+            tags: 
+                - { name: "kernel.event_listener", event: "fos_user.registration.success" }

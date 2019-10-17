@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<br/>
+
+<div class="row justify-content-md-center text-center">
+    <div class="col-md-3">
+        <h3>Merci de votre inscription !</h3>
+        <p> 
+            Nous allons valider votre compte le plus vite possible pour que vous ayez accès au site. 
+            Nous vous préviendrons par e-mail. 
+        <p/>
+        <p> 
+            A bientôt !
+        <p/>
+
+        <br/>
+
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Retourner à l'accueil</a>
+    </div>
+</div>
+
+{% endblock %}

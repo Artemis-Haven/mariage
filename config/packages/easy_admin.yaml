@@ -29,6 +29,8 @@ easy_admin:
                     - { property: 'lastLogin', label: 'Dernière connexion' }
                     - { property: 'roles', label: 'Rôles' }
                     - { property: 'guests', label: 'Invités' }
+                actions: 
+                    - { name: 'emailWhenActivated', label: "Email d'activation" }
             search:
                 fields: ['username', 'email', 'enabled', 'lastLogin']
             form:

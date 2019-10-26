@@ -56,7 +56,7 @@ easy_admin:
             form:
                 fields:
                     - { property: 'name', label: 'Nom' }
-                    - { property: 'content', label: 'Contenu', type: 'fos_ckeditor' }
+                    - { property: 'content', label: 'Contenu', type: 'fos_ckeditor', type_options: { config_name: 'config_with_uploadable_images' } }
 
         ListItem:
             class: App\Entity\ListItem

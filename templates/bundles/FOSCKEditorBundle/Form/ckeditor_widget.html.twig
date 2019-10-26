@@ -1,0 +1,5 @@
+{% extends 'FOSCKEditorBundle:Form:ckeditor_widget.html.twig' %}
+
+{% block ckeditor_widget_extra %}
+    CKEDITOR.config.contentsCss = [CKEDITOR.basePath + 'contents.css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'];
+{% endblock %}

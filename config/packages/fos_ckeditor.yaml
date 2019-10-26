@@ -1,4 +1,11 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+fos_ck_editor:
+    input_sync: true
+    configs:
+        config_with_uploadable_images:
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+            toolbar: standard
 
 twig:
     form_themes:

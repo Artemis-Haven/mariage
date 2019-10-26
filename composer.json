@@ -9,6 +9,7 @@
         "doctrine/annotations": "^1.7",
         "easycorp/easyadmin-bundle": "^2.3",
         "fortawesome/font-awesome": "^5.11",
+        "friendsofsymfony/ckeditor-bundle": "^2.1",
         "friendsofsymfony/user-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.4",
         "swiftmailer/swiftmailer": "^6.2",

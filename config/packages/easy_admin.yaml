@@ -16,6 +16,9 @@ easy_admin:
             - { label: 'Réglages' }
             - { entity: 'User', icon: 'user-circle', label: 'Utilisateurs' }
             - { entity: 'TextBlock', icon: 'edit', label: 'Blocs de texte' }
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
     entities:
         User:
@@ -53,7 +56,7 @@ easy_admin:
             form:
                 fields:
                     - { property: 'name', label: 'Nom' }
-                    - { property: 'content', label: 'Contenu' }
+                    - { property: 'content', label: 'Contenu', type: 'fos_ckeditor' }
 
         ListItem:
             class: App\Entity\ListItem

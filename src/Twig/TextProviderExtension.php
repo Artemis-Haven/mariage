@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Services;
+namespace App\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use App\Entity\TextBlock;
 
-class TextProvider
+class TextProviderExtension extends AbstractExtension
 {
     /**
-     *
      * @var EntityManager 
      */
     protected $em;
 
     /**
-     *
      * @var EntityRepository 
      */
     protected $repo;
@@ -26,13 +26,20 @@ class TextProvider
         $this->repo = $entityManager->getRepository(TextBlock::class);
     }
 
-    public function __call($method, $arguments)
+    public function getFunctions()
     {
-        $text = $this->repo->findOneByName($method);
+        return [
+            new TwigFunction('text', [$this, 'getText'], ['is_safe' => ['html']]),
+        ];
+    }
+
+    public function getText($name)
+    {
+        $text = $this->repo->findOneByName($name);
         if ($text) {
-            return trim($text->getContent()); 
+            return $text->getContent(); 
         } else {
-            $textBlock = new TextBlock($method, '');
+            $textBlock = new TextBlock($name, '');
             $this->em->persist($textBlock);
             $this->em->flush();
             return '';

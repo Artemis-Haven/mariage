@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Subscription;
-use App\Entity\Accommodations;
 
 class MainController extends AbstractController
 {
@@ -40,11 +39,7 @@ class MainController extends AbstractController
     public function accommodations()
     {
         $em = $this->getDoctrine()->getManager();
-        $accommodations = $em->getRepository(Accommodation::class)->findAll();
-        return [
-            'accommodations' => $accommodations
-
-        ];
+        return [];
     }
     
     /**

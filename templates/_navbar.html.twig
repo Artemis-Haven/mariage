@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {% set route = app.request.attributes.get('_route') %}
+    <div class="collapse navbar-collapse container" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if route == 'homepage' %} active {% endif %}">
+                <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+            </li>
+            {% if app.user %}
+                <li class="nav-item {% if route == 'informations' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('informations') }}">Infos pratiques</a>
+                </li>
+                <li class="nav-item {% if route == 'access_map' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('access_map') }}">Plan d'accès</a>
+                </li>
+                <li class="nav-item {% if route == 'accommodations' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('accommodations') }}">Hébergements</a>
+                </li>
+                <li class="nav-item {% if route == 'answer' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('answer') }}">Votre réponse</a>
+                </li>
+                <li class="nav-item {% if route  starts with 'gallery' %} active {% endif %}">
+                    <a class="nav-link" href="#">Albums photos</a>
+                </li>
+                <li class="nav-item {% if route  starts with 'wedding_list' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('wedding_list') }}">Liste de mariage</a>
+                </li>
+                <li class="nav-item {% if route  == 'contact' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                </li>
+            {% endif %}
+        </ul>
+        
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                {% if app.user %}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <span class="dropdown-item-text"><i class="fas fa-user"></i> {{ app.user }}</span>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('easyadmin') }}"><i class="fas fa-cog"></i> Administration</a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_login') }}"><i class="fas fa-user"></i> Connexion</a>
+                    </li>
+                {% endif %}                  
+            </li>
+        </ul>
+    </div>
+</nav>

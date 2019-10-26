@@ -18,23 +18,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        {% set route = app.request.attributes.get('_route') %}
         <div class="collapse navbar-collapse container" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('homepage') }}">Home</a>
-                    {# app.request.attributes.get('_route') #}
+                <li class="nav-item {% if route == 'homepage' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item {% if route == 'informations' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('informations') }}">Infos pratiques</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item {% if route == 'access_map' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('access_map') }}">Plan d'accès</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item {% if route  starts with 'gallery' %} active {% endif %}">
+                    <a class="nav-link" href="#">Albums photos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item {% if route  starts with 'wedding_list' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('wedding_list') }}">Liste de mariage</a>
+                </li>
+                <li class="nav-item {% if route  == 'contact' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -63,8 +66,15 @@
         </div>
     </nav>
     
-    {% block body %}{% endblock %}
-
+    <div class="container">
+        {% block head %}
+            <head>
+                <h1>{% block headTitle %}{% endblock %}</h1>
+            </head>
+        {% endblock %}
+        {% block body %}{% endblock %}
+    </div>
+    
     {% block javascript %}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

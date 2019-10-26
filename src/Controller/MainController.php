@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Subscription;
+use App\Entity\Accommodations;
 
 class MainController extends AbstractController
 {
@@ -28,6 +29,47 @@ class MainController extends AbstractController
      * @Template
      */
     public function waitingForValidation()
+    {
+        return [];
+    }
+    
+    /**
+     * @Route("/hebergements", name="accommodations")
+     * @Template
+     */
+    public function accommodations()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $accommodations = $em->getRepository(Accommodation::class)->findAll();
+        return [
+            'accommodations' => $accommodations
+
+        ];
+    }
+    
+    /**
+     * @Route("/informations-pratiques", name="informations")
+     * @Template
+     */
+    public function informations()
+    {
+        return [];
+    }
+    
+    /**
+     * @Route("/plan-acces", name="access_map")
+     * @Template
+     */
+    public function accessMap()
+    {
+        return [];
+    }
+    
+    /**
+     * @Route("/contactez-nous", name="contact")
+     * @Template
+     */
+    public function contact()
     {
         return [];
     }

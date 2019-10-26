@@ -67,8 +67,8 @@ easy_admin:
                     - { property: 'title', label: 'Titre' }
                     - { property: 'price', label: 'Prix' }
                     - { property: 'link', label: 'Lien', type: 'url' }
+                    - { property: 'imageName', label: 'Image', type: 'image', base_path: '%path.images.listItem%' }
                     - { property: 'gifted', label: 'Financé', type: 'boolean' }
-                    - { property: 'splittable', label: 'Divisible', type: 'boolean' }
                     - { property: 'lastEditedAt', label: 'Dernière modif.' }
                 sort: 'ordering'
             form:
@@ -82,6 +82,7 @@ easy_admin:
                     - { property: 'latitude', label: 'Latitude' }
                     - { property: 'longitude', label: 'Longitude' }
                     - { property: 'ordering', label: 'Etape n°' }
+                    - { property: 'imageFile', label: 'Image', type: 'vich_image', base_path: '%path.images.listItem%' }
 
         Gift:
             class: App\Entity\Gift

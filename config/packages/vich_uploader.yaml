@@ -1,0 +1,10 @@
+parameters:
+    path.images.listItem: /uploads/images/cadeaux
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        listItem:
+            uri_prefix: '%path.images.listItem%'
+            upload_destination: '%kernel.project_dir%/public%path.images.listItem%'

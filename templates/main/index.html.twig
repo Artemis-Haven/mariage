@@ -5,10 +5,11 @@
     {{ parent() }}
 {% endblock %}
 
+{% block headTitle %} {{ text.homepage_title }} {% endblock %}
 
 {% block body %}
 
-Homepage
+{{ text.homepage_text }}
 
 {% endblock %}
 

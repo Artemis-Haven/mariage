@@ -168,7 +168,7 @@ class ListItem
         return $this;
     }
 
-    public function getSplittable(): ?bool
+    public function isSplittable(): ?bool
     {
         return $this->splittable;
     }
@@ -282,5 +282,14 @@ class ListItem
         }
 
         return $this;
+    }
+
+    public function getAlreadyFundedAmount(): int
+    {
+        $sum = 0;
+        foreach ($this->getGifts() as $gift) {
+            $sum += $gift->getAmount();
+        }
+        return min($sum, $this->getPrice());
     }
 }

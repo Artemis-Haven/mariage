@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block headTitle %} {{ text('Liste de mariage - Participer - Titre') }} {% endblock %}
+
+{% block body %}
+
+    <h3>Vous souhaitez participer à : </h3>
+
+	<div class="wedding-list-item">
+		<strong class="title">{{ item }}</strong>
+		<div class="amount">
+			<strong>Montant : {{ item.price }} € </strong>
+			{% if item.alreadyFundedAmount > 0 %}
+				dont {{ item.alreadyFundedAmount }} € déjà financés, soit <strong>{{ item.price - item.alreadyFundedAmount }} €</strong> restants.
+			{% endif %}
+		</div>
+		<div class="row">
+			<div class="col-md-4"><img class="img-thumbnail" src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="Photo de {{ item }}"></div>
+			<div class="col-md-8">
+				<p>{{ item.description }}</p>
+			</div>
+		</div>
+	</div>
+
+    <br>
+
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.amount) }}
+                    {{ form_widget(form.amount, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.submit, {'attr': {'class': 'btn btn-lg btn-success float-right'}}) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
+

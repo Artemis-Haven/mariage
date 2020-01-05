@@ -1,4 +1,15 @@
 /**********************/
+/*       GENERAL      */
+/**********************/
+
+
+@media (min-width:992px) {
+	#navbar-user-menu {
+		display: none !important;
+	}
+}
+
+/**********************/
 /*  LISTE DE MARIAGE  */
 /**********************/
 

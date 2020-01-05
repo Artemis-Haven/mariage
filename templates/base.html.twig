@@ -11,8 +11,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
     {% endblock %}
 </head>
-<body>
-
+<body class="{{ app.request.attributes.get('_route') }}">
     {% include '_navbar.html.twig' %}
     
     <div class="container">

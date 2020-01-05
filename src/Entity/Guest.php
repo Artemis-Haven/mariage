@@ -52,6 +52,11 @@ class Guest
     private $specialDiet;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $absent;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="guests")
      */
     private $user;
@@ -150,6 +155,18 @@ class Guest
         return $this;
     }
 
+    public function isAbsent(): ?bool
+    {
+        return $this->absent;
+    }
+
+    public function setAbsent(?bool $absent): self
+    {
+        $this->absent = $absent;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -162,9 +179,13 @@ class Guest
         return $this;
     }
 
-    public function isAnswered(): ?bool
+    public function hasAnswered(): ?bool
     {
-        return $this->answeredAt != null;
+        return 
+            ($this->attendCeremony === true) || 
+            ($this->attendMeal === true) || 
+            ($this->attendBrunch === true) || 
+            ($this->absent === true);
     }
 
     public function setAnswered(?bool $answered): self

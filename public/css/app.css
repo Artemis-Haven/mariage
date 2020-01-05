@@ -19,3 +19,17 @@
 	margin: 15px 0;
 	font-size: 1.2em;
 }
+
+/**********************/
+/*      REPONSES      */
+/**********************/
+
+body.answer .guest {
+	margin-bottom: 30px;
+}
+
+@media (min-width:992px) {
+	body.answer_form .form-check-input {
+		margin-top: .8rem;
+	}
+}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block headTitle %} {{ text('Réponse - Titre') }} {% endblock %}
+
+{% block body %}
+
+    {{ text('Formulaire de réponse (Cérémonie uniquement) - Texte') }}
+
+    {{ form_start(form) }}
+        <div class="form-row d-none d-lg-flex">
+            <div class="col"></div>
+            <div class="col text-center">Participe<br/>à la cérémonie <br/>et au vin d'honneur</div>
+            <div class="col text-center"><br/>Ne viendra<br/>pas</div>
+        </div>
+        {% for form_guest in form.guests %}
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12 col-sm-6 col-lg">
+                    {{ form_widget(form_guest.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom et prénom'}}) }}
+                </div>
+                <div class="col-md-12 col-lg text-lg-center">
+                    <div class="form-check">
+                        {{ form_widget(form_guest.attendCeremony, {'attr': {'class': 'form-check-input'}}) }}
+                        <span class="d-lg-none">
+                            <label class="form-check-label" for="{{ form_guest.attendCeremony.vars.id }}">Participe à la cérémonie et au vin d'honneur</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg text-lg-center">
+                    <div class="form-check">
+                        {{ form_widget(form_guest.absent, {'attr': {'class': 'form-check-input'}}) }}
+                        <span class="d-lg-none">
+                            <label class="form-check-label" for="{{ form_guest.absent.vars.id }}">Ne viendra pas</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        {% endfor %}
+        <br/>
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.submit, {'attr': {'class': 'btn btn-success'}}) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script>
+        $("[id$='absent']").change(function () {
+            if ($(this).is(':checked')) {
+                $(this).closest('.form-row').find("input[id$='attendCeremony']").each(function() {
+                    $(this).prop("checked", false).prop("disabled", true);
+                });
+            } else {
+                $(this).closest('.form-row').find("input[id$='attendCeremony']").each(function() {
+                    $(this).prop("disabled", false);
+                });
+            }
+        }).change();
+
+        $("input[id$='attendCeremony']").change(function () {
+            if ($(this).closest('.form-row').find("input[id$='attendCeremony']:checked").length > 0) {
+                $(this).closest('.form-row').find("[id$='absent']").each(function() {
+                    $(this).prop("checked", false).prop("disabled", true);
+                });
+            } else {
+                $(this).closest('.form-row').find("[id$='absent']").each(function() {
+                    $(this).prop("disabled", false);
+                });
+            }
+        }).change();
+    </script>
+{% endblock %}

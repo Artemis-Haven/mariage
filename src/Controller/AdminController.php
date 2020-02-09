@@ -73,4 +73,39 @@ class AdminController extends EasyAdminController
             'entity' => $this->request->query->get('entity'),
         ));
     }
+
+    
+
+    public function persistCeremonyGuestWaitingEntity($guest)
+    {
+        $this->persistCeremonyGuest($guest);
+        parent::persistEntity($guest);
+    }
+
+    public function persistCeremonyGuestWhoRepliedEntity($guest)
+    {
+        $this->persistCeremonyGuest($guest);
+        parent::persistEntity($guest);
+    }
+
+    private function persistCeremonyGuest($guest)
+    {
+        $guest->setAttendMeal(false);
+        $guest->setAttendBrunch(false);
+        $guest->setVeggie(false);
+        $guest->setInvitedForCeremonyOnly(true);
+    }
+
+    public function persistFullGuestWaitingEntity($guest)
+    {
+        $guest->setInvitedForCeremonyOnly(false);
+        parent::persistEntity($guest);
+    }
+
+    public function persistFullGuestWhoRepliedEntity($guest)
+    {
+        $guest->setInvitedForCeremonyOnly(false);
+        parent::persistEntity($guest);
+    }
+    
 }

@@ -7,9 +7,12 @@ easy_admin:
 
     design:
         menu:
-            - { label: 'Invités' }
-            - { entity: 'GuestWaiting', icon: 'user-tie', label: 'Invités en attente' }
-            - { entity: 'GuestWhoReplied', icon: 'user-tie', label: 'Invités ayant répondus' }
+            - { label: 'Invités au vin d''honneur' }
+            - { entity: 'CeremonyGuestWaiting', icon: 'user-tie', label: 'Invités en attente' }
+            - { entity: 'CeremonyGuestWhoReplied', icon: 'user-tie', label: 'Invités ayant répondus' }
+            - { label: 'Invités tout le week-end' }
+            - { entity: 'FullGuestWaiting', icon: 'user-tie', label: 'Invités en attente' }
+            - { entity: 'FullGuestWhoReplied', icon: 'user-tie', label: 'Invités ayant répondus' }
             - { label: 'Liste de mariage' }
             - { entity: 'ListItem', icon: 'tasks', label: 'Configuration' }
             - { entity: 'Gift', icon: 'gifts', label: 'Cadeaux' }
@@ -102,14 +105,44 @@ easy_admin:
                     - { property: 'amount', label: 'Montant' }
                     - { property: 'message', label: 'Message' }
 
-        GuestWaiting:
+        CeremonyGuestWaiting:
             class: App\Entity\Guest
-            label: 'Invités'
+            label: 'Invités au vin d''honneur'
             list:
                 fields:
                     - { property: 'name', label: 'Nom' }
                 sort: 'name'
-                dql_filter: 'entity.answeredAt is null'
+                dql_filter: 'entity.answeredAt is null AND entity.invitedForCeremonyOnly = true'
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { type: 'section', label: '' }
+                    - { property: 'answered', label: 'Remplir le formulaire de réponse à la place de l''invité ?', type: 'checkbox' }
+                    - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+
+        CeremonyGuestWhoReplied:
+            class: App\Entity\Guest
+            label: 'Invités au vin d''honneur'
+            list:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'answeredAt', label: 'Date de la réponse' }
+                    - { property: 'attendCeremony', label: 'Cérémonie' }
+                sort: 'answeredAt'
+                dql_filter: 'entity.answeredAt is not null AND entity.invitedForCeremonyOnly = true'
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+
+        FullGuestWaiting:
+            class: App\Entity\Guest
+            label: 'Invités tout le week-end'
+            list:
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                sort: 'name'
+                dql_filter: 'entity.answeredAt is null AND entity.invitedForCeremonyOnly = false'
             form:
                 fields:
                     - { property: 'name', label: 'Nom' }
@@ -121,9 +154,9 @@ easy_admin:
                     - { property: 'veggie', label: 'Végétarien.ne'}
                     - { property: 'specialDiet', label: 'Régime alimentaire spécial'}
 
-        GuestWhoReplied:
+        FullGuestWhoReplied:
             class: App\Entity\Guest
-            label: 'Invités'
+            label: 'Invités tout le week-end'
             list:
                 fields:
                     - { property: 'name', label: 'Nom' }
@@ -134,7 +167,7 @@ easy_admin:
                     - { property: 'veggie', label: 'Végétarien.ne'}
                     - { property: 'specialDiet', label: 'Régime'}
                 sort: 'answeredAt'
-                dql_filter: 'entity.answeredAt is not null'
+                dql_filter: 'entity.answeredAt is not null AND entity.invitedForCeremonyOnly = false'
             form:
                 fields:
                     - { property: 'name', label: 'Nom' }

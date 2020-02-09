@@ -3,8 +3,13 @@
 {% block headTitle %} {{ text('Réponse - Titre') }} {% endblock %}
 
 {% block body %}
+    {% set ceremonyOnly = (guests|first).invitedForCeremonyOnly %}
 
-    {{ text('Votre réponse - Texte') }}
+    {% if ceremonyOnly %}
+        {{ text('Votre réponse (Cérémonie uniquement) - Texte') }}
+    {% else %}
+        {{ text('Votre réponse - Texte') }}
+    {% endif %}
 
     <div class="row justify-content-center">
         <div class="col-md-6 text-center">
@@ -21,42 +26,64 @@
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-user"></i>&nbsp; {{ guest }}</h5>
                         <hr>
-                        {% if guest.hasAnswered and guest.absent %}
-                            <p class="d-none d-sm-block">&nbsp;</p>
-                            <p><i class="far fa-times-circle text-danger"></i> Ne viendra pas</p>
-                            <p class="d-none d-sm-block">&nbsp;</p>
-                        {% elseif guest.hasAnswered %}
-                            <p>
-                                {% if guest.attendCeremony %}
-                                    <i class="far fa-check-circle text-success"></i> Participe à la cérémonie
-                                {% else %}
-                                    <i class="far fa-times-circle text-danger"></i> Ne participe pas à la cérémonie
-                                {% endif %}
-                            </p>
-                            <p>
-                                {% if guest.attendMeal %}
-                                    <i class="far fa-check-circle text-success"></i> Participe au dîner
-                                {% else %}
-                                    <i class="far fa-times-circle text-danger"></i> Ne participe pas au dîner
-                                {% endif %}
-                            </p>
-                            <p>
-                                {% if guest.attendBrunch %}
-                                    <i class="far fa-check-circle text-success"></i> Participe au brunch
-                                {% else %}
-                                    <i class="far fa-times-circle text-danger"></i> Ne participe pas au brunch
-                                {% endif %}
-                            </p>
-                            {% if guest.veggie %}
-                                <p><em>Option végétarienne</em></p>
+                        {% if ceremonyOnly %}
+
+                            {% if guest.hasAnswered and guest.absent %}
+                                <p><i class="far fa-times-circle text-danger"></i> Ne viendra pas</p>
+                            {% elseif guest.hasAnswered %}
+                                <p>
+                                    {% if guest.attendCeremony %}
+                                        <i class="far fa-check-circle text-success"></i>
+                                        Participe
+                                    {% else %}
+                                        <i class="far fa-times-circle text-danger"></i>
+                                        Ne participe pas
+                                    {% endif %}
+                                </p>
+                            {% else %}
+                                <p class="text-muted text-center">En attente de réponse</p>
                             {% endif %}
-                            {% if guest.specialDiet %}
-                                <p><em>{{ guest.specialDiet }}</em></p>
-                            {% endif %}
+
                         {% else %}
-                            <p class="d-none d-sm-block">&nbsp;</p>
-                            <p class="text-muted text-center">En attente de réponse</p>
-                            <p class="d-none d-sm-block">&nbsp;</p>
+
+                            {% if guest.hasAnswered and guest.absent %}
+                                <p class="d-none d-sm-block">&nbsp;</p>
+                                <p><i class="far fa-times-circle text-danger"></i> Ne viendra pas</p>
+                                <p class="d-none d-sm-block">&nbsp;</p>
+                            {% elseif guest.hasAnswered %}
+                                <p>
+                                    {% if guest.attendCeremony %}
+                                        <i class="far fa-check-circle text-success"></i> Participe à la cérémonie
+                                    {% else %}
+                                        <i class="far fa-times-circle text-danger"></i> Ne participe pas à la cérémonie
+                                    {% endif %}
+                                </p>
+                                <p>
+                                    {% if guest.attendMeal %}
+                                        <i class="far fa-check-circle text-success"></i> Participe au dîner
+                                    {% else %}
+                                        <i class="far fa-times-circle text-danger"></i> Ne participe pas au dîner
+                                    {% endif %}
+                                </p>
+                                <p>
+                                    {% if guest.attendBrunch %}
+                                        <i class="far fa-check-circle text-success"></i> Participe au brunch
+                                    {% else %}
+                                        <i class="far fa-times-circle text-danger"></i> Ne participe pas au brunch
+                                    {% endif %}
+                                </p>
+                                {% if guest.veggie %}
+                                    <p><em>Option végétarienne</em></p>
+                                {% endif %}
+                                {% if guest.specialDiet %}
+                                    <p><em>{{ guest.specialDiet }}</em></p>
+                                {% endif %}
+                            {% else %}
+                                <p class="d-none d-sm-block">&nbsp;</p>
+                                <p class="text-muted text-center">En attente de réponse</p>
+                                <p class="d-none d-sm-block">&nbsp;</p>
+                            {% endif %}
+
                         {% endif %}
                     </div>
                 </div>

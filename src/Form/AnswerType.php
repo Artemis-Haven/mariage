@@ -15,7 +15,8 @@ class AnswerType extends AbstractType
     {
         $builder
             ->add('guests', FormType\CollectionType::class, [
-                'entry_type' => GuestType::class
+                'entry_type' => GuestType::class,
+                'entry_options' => ['ceremonyOnly' => $options['ceremonyOnly']]
             ])
         ;
     }
@@ -24,6 +25,7 @@ class AnswerType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'ceremonyOnly' => false
         ]);
     }
 }

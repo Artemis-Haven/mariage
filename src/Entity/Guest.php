@@ -57,6 +57,11 @@ class Guest
     private $absent;
 
     /**
+     * @ORM\Column(type="boolean", options={"default"=false})
+     */
+    private $invitedForCeremonyOnly;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="guests")
      */
     private $user;
@@ -163,6 +168,18 @@ class Guest
     public function setAbsent(?bool $absent): self
     {
         $this->absent = $absent;
+
+        return $this;
+    }
+
+    public function isInvitedForCeremonyOnly(): ?bool
+    {
+        return $this->invitedForCeremonyOnly;
+    }
+
+    public function setInvitedForCeremonyOnly(?bool $invitedForCeremonyOnly): self
+    {
+        $this->invitedForCeremonyOnly = $invitedForCeremonyOnly;
 
         return $this;
     }

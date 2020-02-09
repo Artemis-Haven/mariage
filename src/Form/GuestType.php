@@ -11,21 +11,30 @@ class GuestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-            ->add('attendCeremony')
-            ->add('attendMeal')
-            ->add('attendBrunch')
-            ->add('veggie')
-            ->add('specialDiet')
-            ->add('absent')
-        ;
+        if ($options['ceremonyOnly']) {
+            $builder
+                ->add('name')
+                ->add('attendCeremony')
+                ->add('absent')
+            ;
+        } else {
+            $builder
+                ->add('name')
+                ->add('attendCeremony')
+                ->add('attendMeal')
+                ->add('attendBrunch')
+                ->add('veggie')
+                ->add('specialDiet')
+                ->add('absent')
+            ;
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Guest::class,
+            'ceremonyOnly' => false
         ]);
     }
 }

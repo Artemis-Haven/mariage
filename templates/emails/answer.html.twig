@@ -1,0 +1,49 @@
+<strong>
+	Nouvelle réponse de {{ user }} !
+</strong>
+
+{% set ceremonyOnly = (user.guests|first).invitedForCeremonyOnly %}
+
+
+{% if ceremonyOnly %}
+    <p>Invité.e.s à la cérémonie uniquement.</p>
+{% else %}
+    <p>Invité.e.s tout le week-end.</p>
+{% endif %}
+
+{% for guest in user.guests %}
+
+    <p><strong>{{ guest }}</strong></p>
+    <ul>
+        {% if guest.hasAnswered and guest.absent %}
+            <li>Ne viendra pas</li>
+        {% elseif guest.hasAnswered %}
+            {% if guest.attendCeremony %}
+                <li>Participe à la cérémonie</li>
+            {% else %}
+                <li>Ne participe pas à la cérémonie</li>
+            {% endif %}
+            {% if not ceremonyOnly %}
+                {% if guest.attendMeal %}
+                    <li>Participe au dîner</li>
+                {% else %}
+                    <li>Ne participe pas au dîner</li>
+                {% endif %}
+                {% if guest.attendBrunch %}
+                    <li>Participe au brunch</li>
+                {% else %}
+                    <li>Ne participe pas au brunch</li>
+                {% endif %}
+                {% if guest.veggie %}
+                    <li><em>Option végétarienne</em></li>
+                {% endif %}
+                {% if guest.specialDiet %}
+                    <li><em>{{ guest.specialDiet }}</em></li>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <li>En attente de réponse</li>
+        {% endif %}
+    </ul>
+
+{% endfor %}

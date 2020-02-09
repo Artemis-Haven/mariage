@@ -29,24 +29,45 @@ class AnswerController extends AbstractController
 
     /**
      * @Route("/formulaire", name="answer_form")
-     * @Template
      */
-    public function form(Request $request)
+    public function form(Request $request, \Swift_Mailer $mailer)
     {
         $user = $this->getUser();
-        $form = $this->createForm(AnswerType::class, $user)
+        $ceremonyOnly = $user->getGuests()->first()->isInvitedForCeremonyOnly();
+        $form = $this->createForm(AnswerType::class, $user, ['ceremonyOnly' => $ceremonyOnly])
             ->add('submit', FormType\SubmitType::class, ['label' => 'Valider']);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {            
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $this->addFlash('success', "Votre réponse a bien été enregistrée !");
+            $email = (new \Swift_Message("Mariage - " . $user . " a rempli le formulaire de réponse"))
+                ->setFrom($this->getParameter('mail_from'))
+                ->setTo($this->getParameter('mail_from'))
+                ->setBody(
+                    $this->renderView(
+                        'emails/answer.html.twig',
+                        [
+                            'user' => $user
+                        ]
+                    ),
+                    'text/html'
+                )
+            ;
+            $mailer->send($email);
+            return $this->redirectToRoute('answer');
         }
 
-        return [
+        $template = 'answer/full_form.html.twig';
+        if ($ceremonyOnly) {
+            $template = 'answer/ceremony_only_form.html.twig';
+        }
+        return $this->render($template, [
             'form' => $form->createView()
-        ];
+        ]);
     }
 }

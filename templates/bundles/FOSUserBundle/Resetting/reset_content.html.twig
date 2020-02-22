@@ -1,21 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Créez votre compte</h5>
-    </div>
-    <div class="card-body">
-        {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-            <fieldset>
-                <div class="form-group">
-                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Répéter le nouveau mot de passe'}}) }}
-                </div>
-                <input class="btn btn-lg btn-info btn-block" type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
-                {{ form_rest(form) }}
-            </fieldset>
-        {{ form_end(form) }}
-    </div>
-</div>
+<h3>Créez votre compte</h3>
+<br>
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+    <fieldset>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Répéter le nouveau mot de passe'}}) }}
+        </div>
+        <br>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+        {{ form_rest(form) }}
+    </fieldset>
+{{ form_end(form) }}

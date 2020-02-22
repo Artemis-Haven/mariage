@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'anonymous_base.html.twig' %}
 
 {% block body %}
 
 <br/>
 
 <div class="row justify-content-md-center">
-    <div class="col-md-5">
+    <div class="col-md-12">
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
                 {% for message in messages %}

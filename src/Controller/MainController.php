@@ -18,6 +18,8 @@ class MainController extends AbstractController
     {
         if ($this->getParameter('coming_soon')) {
             return $this->comingSoon($request, $mailer);
+        } elseif (!$this->getUser()) {
+            return $this->render('index.html.twig');
         }
         
         return $this->render('main/index.html.twig');

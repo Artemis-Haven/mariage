@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Mariage de Manon et Rémi</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('anon') }}
+        {% endblock %}
+    </head>
+    <body class="{{ app.request.attributes.get('_route') }}">
+
+        <img src="{{ asset('images/background.jpg') }}" alt="Background" class="background-img" decoding="async">
+
+        <div class="home-panel">
+            <div class="home-panel-bg"></div>
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 my-auto">
+                        <div class="home-panel-content text-white py-5 py-md-0">
+                            {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block javascript %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('anon') }}
+        {% endblock %}
+    </body>
+</html>

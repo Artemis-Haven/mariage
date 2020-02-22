@@ -1,30 +1,36 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Créez votre compte</h5>
-    </div>
-    <div class="card-body">
-        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-            <fieldset>
-                <div class="form-group">
-                    {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Prénom et nom'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse e-mail'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Répéter le mot de passe'}}) }}
-                </div>
-                <input class="btn btn-lg btn-info btn-block" type="submit" value="Créer mon compte" />
-                {{ form_rest(form) }}
-            </fieldset>
-        {{ form_end(form) }}
-        <hr/>
-        <h4 class="text-center">OU</h4>
-        <a href="{{ path("fos_user_security_login") }}" class="btn btn-lg btn-success btn-block">Connectez-vous</a>
-    </div>
+<h4 class="text-center">Créez votre compte</h4>
+
+<br/>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <fieldset>
+        <div class="form-group">
+            {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Prénom et nom'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse e-mail'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Répéter le mot de passe'}}) }}
+        </div>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Créer mon compte" />
+        {{ form_rest(form) }}
+    </fieldset>
+{{ form_end(form) }}
+
+<br/>
+
+<h4 class="text-center">OU</h4>
+
+<br/>
+
+<a href="{{ path("fos_user_security_login") }}" class="btn btn-lg btn-success btn-block">Connectez-vous</a>
+
+<div class="text-right">
+    <a class="small" href="{{ path("fos_user_resetting_request") }}">J'ai oublié mon mot de passe</a>
 </div>

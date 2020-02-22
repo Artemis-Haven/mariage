@@ -1,0 +1,14 @@
+{% extends 'anonymous_base.html.twig' %}
+
+{% block body %}
+
+    {{ text('Accueil non connecté - Texte') }}
+    <br>
+    <a href="{{ path("fos_user_security_login") }}" class="btn btn-lg btn-success btn-block">Connectez-vous</a>
+    <br>
+    <h4 class="text-center">OU</h4>
+    <br>
+    <a href="{{ path("fos_user_registration_register") }}" class="btn btn-lg btn-primary btn-block">Créez un compte</a>
+
+{% endblock %}
+

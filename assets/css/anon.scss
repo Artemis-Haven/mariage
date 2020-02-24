@@ -1,3 +1,21 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// Bootstrap overrides
+$primary: #790d0d;
+$enable-rounded: false;
+$input-bg: rgba(0, 0, 0, .5);
+$input-border-color: rgba(0, 0, 0, .6);
+$text-muted: $gray-400;
+$body-color: $gray-400;
+$input-color: $gray-400;
+$input-disabled-bg: rgba(100, 100, 100, 0.5);
+$link-hover-color: lighten($link-color,10%);
+
+@import "~bootstrap/scss/bootstrap";
+
+/*******************************************************************/
+
 html, body {
     height: 100%;
 }

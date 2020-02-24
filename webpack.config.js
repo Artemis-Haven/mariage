@@ -26,6 +26,8 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('anon', './assets/js/anon.js')
     .addEntry('map', './assets/js/map.js')
+    .addEntry('answer_full_form', './assets/js/answer_full_form.js')
+    .addEntry('answer_ceremony_only_form', './assets/js/answer_ceremony_only_form.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

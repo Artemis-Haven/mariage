@@ -1,1 +1,1 @@
-import '../css/anon.css';
+import '../css/anon.scss';

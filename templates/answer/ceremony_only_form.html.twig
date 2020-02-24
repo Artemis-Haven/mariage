@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{%- block checkbox_widget -%}
+    <div class="pretty p-default">
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    </div>
+{%- endblock checkbox_widget -%}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('answer_ceremony_only_form') }}
+{% endblock %}
+
 {% block headTitle %} {{ text('Réponse - Titre') }} {% endblock %}
 
 {% block body %}
@@ -50,30 +61,5 @@
 
 {% block javascript %}
     {{ parent() }}
-
-    <script>
-        $("[id$='absent']").change(function () {
-            if ($(this).is(':checked')) {
-                $(this).closest('.form-row').find("input[id$='attendCeremony']").each(function() {
-                    $(this).prop("checked", false).prop("disabled", true);
-                });
-            } else {
-                $(this).closest('.form-row').find("input[id$='attendCeremony']").each(function() {
-                    $(this).prop("disabled", false);
-                });
-            }
-        }).change();
-
-        $("input[id$='attendCeremony']").change(function () {
-            if ($(this).closest('.form-row').find("input[id$='attendCeremony']:checked").length > 0) {
-                $(this).closest('.form-row').find("[id$='absent']").each(function() {
-                    $(this).prop("checked", false).prop("disabled", true);
-                });
-            } else {
-                $(this).closest('.form-row').find("[id$='absent']").each(function() {
-                    $(this).prop("disabled", false);
-                });
-            }
-        }).change();
-    </script>
+    {{ encore_entry_script_tags('answer_ceremony_only_form') }}
 {% endblock %}

@@ -12,6 +12,7 @@
 ###< symfony/framework-bundle ###
 
 /public/images/background.jpg
+/public/images/background_blur.jpg
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules

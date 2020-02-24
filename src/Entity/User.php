@@ -108,4 +108,19 @@ class User extends BaseUser
 
         return $this;
     }
+
+    public function hasAnswered(): bool
+    {
+        foreach ($this->guests as $guest) {
+            if (!$guest->hasAnswered()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function isInvitedForCeremonyOnly(): bool
+    {
+        return $this->guests->first()->isInvitedForCeremonyOnly();
+    }
 }

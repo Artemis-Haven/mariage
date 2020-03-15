@@ -59,17 +59,7 @@ $(function () {
     var polyline = L.polyline(polylines, {weight: 0}).addTo(myMap);
     var decorator = L.polylineDecorator(polyline, {
         patterns: [
-            { offset: 0, repeat: 20, symbol: L.Symbol.dash({ pixelSize: 10, pathOptions: { color: '#900', weight: 2, opacity: 0.8 } }) },
-            {
-                offset: '16%', repeat: '33%', symbol: L.Symbol.marker({
-                    rotate: true, markerOptions: {
-                        icon: L.icon({
-                            iconUrl: '/images/map/plane.png',
-                            iconAnchor: [16, 16]
-                        })
-                    }
-                })
-            }
+            { offset: 0, repeat: 20, symbol: L.Symbol.dash({ pixelSize: 7, pathOptions: { color: '#900', weight: 2, opacity: 0.8 } }) }
         ]
     });
     //setTimeout(function(){
@@ -78,13 +68,9 @@ $(function () {
 });
 function generatePostcardContent(data) {
     var descriptionSize = (data.description.length < 300 ? 'lg' : (data.description.length > 400 ? 'sm' : ''));
-    var firstLine = 'Coût total : '+data.price+' €';
-    var secondLine = data.alreadyFundedAmount+' € déjà financé';
-    var thirdLine = '<a href="'+data.contribute_url+'" class="btn">Cliquez ici <br /> pour participer</a>';
-    if (data.price == data.alreadyFundedAmount) {
-        secondLine = 'Déjà financé !';
-        thirdLine = '';
-    }
+    var firstLine = '';
+    var secondLine = '';
+    var thirdLine = '';
     return ''+
     '<div class="flip-container" onclick="this.classList.toggle(\'flipped\')">'+
         '<div class="flipper">'+
@@ -98,7 +84,7 @@ function generatePostcardContent(data) {
                     '</div>'+
                     '<div class="postcard-right-side">'+
                         '<div class="postcard-stamp"><img src="/images/map/stamp.png" alt="Timbre" /></div>'+
-                        '<div class="postcard-address">'+firstLine+'<hr />'+secondLine+'&nbsp;<hr />'+thirdLine+'</div>'+
+                        '<div class="postcard-address">'+firstLine+'<hr />'+secondLine+'&nbsp;<hr />'+thirdLine+'&nbsp;<hr /></div>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

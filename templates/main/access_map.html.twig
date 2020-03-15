@@ -3,6 +3,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('access_map') }}
 {% endblock %}
 
 {% block headTitle %} {{ text('Plan - Titre') }} {% endblock %}
@@ -11,10 +12,14 @@
 
 {{ text('Plan - Texte') }}
 
+<div id="mapContainer">
+	<div id="mapid" class="d-none d-md-block"></div>
+</div>
+
 {% endblock %}
 
 
 {% block javascript %}
     {{ parent() }}
-
+    {{ encore_entry_script_tags('access_map') }}
 {% endblock %}

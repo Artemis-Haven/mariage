@@ -1,4 +1,4 @@
-import '../css/map.css';
+import '../css/travel_map.css';
 const $ = require('jquery');
 require('leaflet');
 require('leaflet-polylinedecorator');
@@ -59,18 +59,22 @@ $(function () {
     var polyline = L.polyline(polylines, {weight: 0}).addTo(myMap);
     var decorator = L.polylineDecorator(polyline, {
         patterns: [
-            /*{ offset: 0, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#000', weight: 3, opacity: 0.2}}) },*/
-            { offset: 20, endOffset: 20, repeat: '50px', symbol: L.Symbol.marker({rotate: true, markerOptions: {
-                icon: L.icon({
-                    iconUrl: '/images/map/footprints.png',
-                    iconAnchor: [10, 16]
-                }), zIndexOffset: -100
-            }})}
+            { offset: 0, repeat: 20, symbol: L.Symbol.dash({ pixelSize: 10, pathOptions: { color: '#900', weight: 2, opacity: 0.8 } }) },
+            {
+                offset: '16%', repeat: '33%', symbol: L.Symbol.marker({
+                    rotate: true, markerOptions: {
+                        icon: L.icon({
+                            iconUrl: '/images/map/plane.png',
+                            iconAnchor: [16, 16]
+                        })
+                    }
+                })
+            }
         ]
     });
-    setTimeout(function(){
+    //setTimeout(function(){
         decorator.addTo(myMap).snakeIn();
-    }, 2000);
+    //}, 2000);
 });
 function generatePostcardContent(data) {
     var descriptionSize = (data.description.length < 300 ? 'lg' : (data.description.length > 400 ? 'sm' : ''));

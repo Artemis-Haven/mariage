@@ -42,6 +42,7 @@ $link-hover-color: lighten($link-color,10%);
 body {
 	background-image: url('/images/background.jpg');
 	background-position: center top;
+	background-attachment: fixed;
 	height: 100vh;
 }
 
@@ -49,8 +50,10 @@ body > div.container {
 	margin: 20px auto;
 	padding: 15px;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+	background-color: rgba(255, 255, 255, 0.5);
 	background: url('/images/background_blur.jpg');
-	background-position: center -76px;
+	background-position: center top;
+	background-attachment: fixed;
 }
 
 @media (max-width:575px) {
@@ -66,17 +69,21 @@ body > div.container {
 
 #navbar .dropdown-menu {
 	background-color: rgba(0, 0, 0, 0.5);
+	padding: 0;
 }
 
 #navbar .dropdown-divider {
 	border-color: #666666;
+	margin: 0;
 }
 
 #navbar .dropdown-item, #navbar .dropdown-item-text {
 	color: #eeeeee;
+	padding: 0.5rem 1.5rem;
 }
 #navbar .dropdown-item:hover, #navbar .dropdown-item:focus {
-    color: #16181b;
+	color: #fff;
+	background-color: #ffffff50;
 }
 
 @media (min-width:992px) {

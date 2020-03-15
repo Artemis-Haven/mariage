@@ -1,10 +1,6 @@
 import '../css/access_map.css';
 const $ = require('jquery');
 require('leaflet');
-require('leaflet-polylinedecorator');
-require('leaflet.polyline.snakeanim');
-require('overlapping-marker-spiderfier-leaflet');
-require('mobile-detect');
 
 $(function () {
     // Création du fond de la carte

@@ -1,11 +1,4 @@
 {% extends 'base.html.twig' %}
-{% form_theme form _self %}
-
-{%- block checkbox_widget -%}
-    <div class="pretty p-default">
-        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-    </div>
-{%- endblock checkbox_widget -%}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -28,54 +21,66 @@
             <div class="col text-center"><br/>Ne viendra<br/>pas</div>
         </div>
         {% for form_guest in form.guests %}
-            <br>
             <div class="form-row">
                 <div class="col-xs-12 col-sm-6 col-lg">
                     {{ form_widget(form_guest.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom et prénom'}}) }}
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
-                        {{ form_widget(form_guest.attendCeremony, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="pretty p-switch p-fill">
+                            {{ form_widget(form_guest.attendCeremony, {'attr': {'class': 'form-check-input'}}) }}
+                            <div class="state p-success"><label></label></div>
+                        </div>
                         <span class="d-lg-none">
-                            <label class="form-check-label" for="{{ form_guest.attendCeremony.vars.id }}">Participe à la cérémonie et au vin d'honneur</label>
+                            <span class="form-check-label" for="{{ form_guest.attendCeremony.vars.id }}">Participe à la cérémonie et au vin d'honneur</span>
                         </span>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
-                        {{ form_widget(form_guest.attendMeal, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="pretty p-switch p-fill">
+                            {{ form_widget(form_guest.attendMeal, {'attr': {'class': 'form-check-input'}}) }}
+                            <div class="state p-success"><label></label></div>
+                        </div>
                         <span class="d-lg-none">
-                            <label class="form-check-label" for="{{ form_guest.attendMeal.vars.id }}">Participe au repas</label>
+                            <span class="form-check-label" for="{{ form_guest.attendMeal.vars.id }}">Participe au repas</span>
                         </span>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
-                        {{ form_widget(form_guest.attendBrunch, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="pretty p-switch p-fill">
+                            {{ form_widget(form_guest.attendBrunch, {'attr': {'class': 'form-check-input'}}) }}
+                            <div class="state p-success"><label></label></div>
+                        </div>
                         <span class="d-lg-none">
-                            <label class="form-check-label" for="{{ form_guest.attendBrunch.vars.id }}">Participe au brunch du lendemain</label>
+                            <span class="form-check-label" for="{{ form_guest.attendBrunch.vars.id }}">Participe au brunch du lendemain</span>
                         </span>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
-                        {{ form_widget(form_guest.veggie, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="pretty p-switch p-fill">
+                            {{ form_widget(form_guest.veggie, {'attr': {'class': 'form-check-input'}}) }}
+                            <div class="state p-success"><label></label></div>
+                        </div>
                         <span class="d-lg-none">
-                            <label class="form-check-label" for="{{ form_guest.veggie.vars.id }}">Option végétarienne</label>
+                            <span class="form-check-label" for="{{ form_guest.veggie.vars.id }}">Option végétarienne</span>
                         </span>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
-                        {{ form_widget(form_guest.absent, {'attr': {'class': 'form-check-input'}}) }}
+                        <div class="pretty p-switch p-fill">
+                            {{ form_widget(form_guest.absent, {'attr': {'class': 'form-check-input'}}) }}
+                            <div class="state p-danger"><label></label></div>
+                        </div>
                         <span class="d-lg-none">
-                            <label class="form-check-label" for="{{ form_guest.absent.vars.id }}">Ne viendra pas</label>
+                            <span class="form-check-label" for="{{ form_guest.veggie.vars.id }}">Option végétarienne</span>
                         </span>
                     </div>
                 </div>
             </div>
-
-            <br/>
 
             <div class="form-row">
                 <div class="col">

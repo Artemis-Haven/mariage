@@ -6,4 +6,29 @@
 
     {{ text('Hébergements - Texte') }}
 
+    <br>
+
+    <div class="row">
+        {% for acc in accommodations %}
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    {% if acc.link %}
+                        <a href="{{ acc.link }}" target="_blank" class="card-img-top">
+                            <img src="{{ vich_uploader_asset(acc, 'imageFile') }}" class="card-img" alt="Photo de {{ acc.title }}">
+                        </a>
+                    {% else %}
+                        <img src="{{ vich_uploader_asset(acc, 'imageFile') }}" class="card-img" alt="Photo de {{ acc.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ acc.title }}</h5>
+                        <p class="card-text">{{ acc.description | raw }}</p>
+                        {% if acc.link %}
+                            <a href="{{ acc.link }}" target="_blank" class="btn btn-primary">Aller sur le site</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

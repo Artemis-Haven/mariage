@@ -41,16 +41,9 @@ class MainController extends AbstractController
     public function accommodations()
     {
         $em = $this->getDoctrine()->getManager();
-        return [];
-    }
-    
-    /**
-     * @Route("/informations-pratiques", name="informations")
-     * @Template
-     */
-    public function informations()
-    {
-        return [];
+        return [
+            'accommodations' => $em->getRepository(\App\Entity\Accommodation::class)->findAll()
+        ];
     }
     
     /**

@@ -13,9 +13,9 @@ easy_admin:
             - { label: 'Invités tout le week-end' }
             - { entity: 'FullGuestWaiting', icon: 'user-tie', label: 'Invités en attente' }
             - { entity: 'FullGuestWhoReplied', icon: 'user-tie', label: 'Invités ayant répondus' }
-            - { label: 'Liste de mariage' }
-            - { entity: 'ListItem', icon: 'tasks', label: 'Configuration' }
-            - { entity: 'Gift', icon: 'gifts', label: 'Cadeaux' }
+            - { label: 'Pages' }
+            - { entity: 'ListItem', icon: 'gift', label: 'Liste de mariage' }
+            - { entity: 'Accommodation', icon: 'home', label: 'Hébergements' }
             - { label: 'Réglages' }
             - { entity: 'User', icon: 'user-circle', label: 'Utilisateurs' }
             - { entity: 'TextBlock', icon: 'edit', label: 'Blocs de texte' }
@@ -60,20 +60,32 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Nom' }
                     - { property: 'content', label: 'Contenu', type: 'fos_ckeditor', type_options: { config_name: 'config_with_uploadable_images' } }
+        Accommodation:
+            class: App\Entity\Accommodation
+            label: 'Hébergements'
+            list:
+                fields: 
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'description', label: 'Description' }
+                    - { property: 'imageName', label: 'Image', type: 'image', base_path: '%path.images.accommodation%' }
+                    - { property: 'link', label: 'Lien' }
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'description', label: 'Description', type: 'fos_ckeditor', type_options: { config_name: 'config_with_uploadable_images' } }
+                    - { property: 'imageFile', label: 'Image', type: 'vich_image', base_path: '%path.images.accommodation%' }
+                    - { property: 'link', label: 'Lien' }
 
         ListItem:
             class: App\Entity\ListItem
-            label: 'Eléments de la liste'
+            label: 'Etape'
             list:
                 fields: 
                     - { property: 'ordering', label: 'Etape n°' }
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'price', label: 'Prix' }
-                    - { property: 'link', label: 'Lien', type: 'url' }
                     - { property: 'imageName', label: 'Image', type: 'image', base_path: '%path.images.listItem%' }
-                    - { property: 'gifted', label: 'Financé', type: 'boolean' }
-                    - { property: 'lastEditedAt', label: 'Dernière modif.' }
-                sort: 'ordering'
+                    - { property: 'link', label: 'Lien', type: 'url' }
+                sort: ['ordering', 'ASC']
             form:
                 fields:
                     - { property: 'title', label: 'Titre' }
@@ -86,24 +98,6 @@ easy_admin:
                     - { property: 'longitude', label: 'Longitude' }
                     - { property: 'ordering', label: 'Etape n°' }
                     - { property: 'imageFile', label: 'Image', type: 'vich_image', base_path: '%path.images.listItem%' }
-
-        Gift:
-            class: App\Entity\Gift
-            label: 'Cadeaux'
-            list:
-                fields: 
-                    - { property: 'giver', label: 'Mécène' }
-                    - { property: 'listItem', label: 'Cadeau' }
-                    - { property: 'amount', label: 'Montant' }
-                    - { property: 'message', label: 'Message' }
-                    - { property: 'createdAt', label: 'Enregistré le' }
-                sort: 'createdAt'
-            form:
-                fields:
-                    - { property: 'giver', label: 'Mécène' }
-                    - { property: 'listItem', label: 'Cadeau' }
-                    - { property: 'amount', label: 'Montant' }
-                    - { property: 'message', label: 'Message' }
 
         CeremonyGuestWaiting:
             class: App\Entity\Guest

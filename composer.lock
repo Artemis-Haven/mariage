@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fdcb66b650d72e335ec3898de917ec4",
+    "content-hash": "89820309ac618666ffafc5f39ac689ba",
     "packages": [
         {
             "name": "components/elfinder",

@@ -29,6 +29,7 @@ Encore
     .addEntry('access_map', './assets/js/access_map.js')
     .addEntry('answer_full_form', './assets/js/answer_full_form.js')
     .addEntry('answer_ceremony_only_form', './assets/js/answer_ceremony_only_form.js')
+    .addEntry('gallery', './assets/js/gallery.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

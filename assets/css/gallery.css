@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import "~dropzone/dist/min/dropzone.min.css";
+
+#photo-stack-container {
+	text-align: center;
+}
+
+.photo-stack {
+	position: relative; 
+	z-index: 10; 
+	display: inline-block;
+	margin: 20px 20px;
+}
+
+.photo-stack > div {
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	background: #fff;
+}
+
+.photo-stack img {
+	box-sizing: content-box;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	overflow: hidden;
+}
+
+.photo-stack-title {
+	padding-top: 10px;
+    font-family: 'Special Elite', cursive;
+    white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    color: #000;
+}
+
+.photo-stack:hover {
+    text-decoration: none;
+}
+
+.photo-stack:before,
+.photo-stack:after { 
+	background: #f3f3f3;
+	border: 1px solid #e9e9e9;
+	content: ""; 
+	width: 100%; 
+	height: 100%; 
+	z-index: -10;
+	position: absolute; 
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+	transition: transform 500ms, left 500ms, top 500ms;
+}
+
+.photo-stack:before { 
+	left: -1px;
+	top: -1px; 
+	transform: rotate(-3deg);
+}
+
+.photo-stack:after { 
+	left: 5px;
+	top: 0; 
+	transform: rotate(5deg);
+}
+
+.photo-stack:hover:before {
+	left: -10px;
+	top: -1px; 
+	transform: rotate(-5deg);
+}
+
+.photo-stack:hover:after {
+	left: 10px;
+	top: -3px; 
+	transform: rotate(8deg);
+}
+
+.gallery-container a {
+	margin-bottom: 20px;
+}
+
+.gallery-container img {
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+	padding: 8px;
+}
+
+/* EDIT */
+
+.gallery_edit .img-thumbnail {
+	max-height: 100px;
+	max-width: 100px;
+}

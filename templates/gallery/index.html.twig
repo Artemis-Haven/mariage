@@ -3,6 +3,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('gallery') }}
 {% endblock %}
 
 {% block headTitle %} {{ text('Albums photos - Titre') }} {% endblock %}
@@ -11,10 +12,23 @@
 
 {{ text('Albums photos - Texte') }}
 
+<a href="{{ path('gallery_new') }}" class="btn btn-primary">Créez un nouvel album et ajoutez vos photos</a>
+
+<div id="photo-stack-container">
+	{% for gallery in galleries if gallery.photos is not empty and not gallery.contest %}
+		<a class="photo-stack" href="{{ path('gallery_show', {'id': gallery.id}) }}">
+			<div>
+				<img src="{{ vich_uploader_asset(gallery.photos|first, 'imageFile') }}" alt="{{ gallery.title }}, par {{ gallery.creator }}"/>
+				<div class="photo-stack-title" title="{{ gallery.title }}, par {{ gallery.creator }}">{{ gallery.title }}</div>
+			</div>
+		</a>
+	{% endfor %}
+</div>
+
 {% endblock %}
 
 
 {% block javascript %}
     {{ parent() }}
-
+    {{ encore_entry_script_tags('gallery') }}
 {% endblock %}

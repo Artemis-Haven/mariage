@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('gallery') }}
+{% endblock %}
+
+{% block headTitle %} {{ text('Albums photos - Titre') }} {% endblock %}
+
+{% block body %}
+
+<a href="{{ path('gallery') }}" class="btn btn-outline-primary">
+	<i class="fas fa-arrow-left"></i>
+	Revenir aux albums
+</a>
+
+<hr>
+
+{% if app.user == gallery.creator or is_granted('ROLE_ADMIN') %}
+	<a href="{{ path('gallery_upload_photos', {'id': gallery.id}) }}" class="btn btn-success float-right">
+		<i class="fas fa-plus"></i>
+		Ajouter des photos
+	</a>
+{% endif %}
+
+<h1>
+	{{ gallery.title }}
+	{% if app.user == gallery.creator or is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('gallery_edit', {'id': gallery.id}) }}" class="btn btn-outline-dark" title="Modifier l'album">
+			<i class="fas fa-edit"></i>
+		</a>
+	{% endif %}
+</h1>
+
+<p>Photos de
+	<b>{{ gallery.creator }}</b>, mises en ligne le
+	<b>{{ gallery.createdAt|date('d/m/Y') }}</b>
+</p>
+
+<div class="row gallery-container">
+	{% for photo in gallery.photos %}
+		<a href="{{ path('gallery_photo_show', {'id': photo.id}) }}" class="col-md-3 col-sm-4 col-xs-6" data-mfp-src="{{ vich_uploader_asset(photo, 'imageFile') }}">
+			<img class="img-thumbnail" alt="{{ photo.imageName }}" src="{{ vich_uploader_asset(photo, 'imageFile') }}">
+		</a>
+	{% endfor %}
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('gallery') }}
+{% endblock %}

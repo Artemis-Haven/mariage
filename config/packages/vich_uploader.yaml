@@ -1,6 +1,7 @@
 parameters:
     path.images.listItem: /uploads/images/cadeaux
     path.images.accommodation: /uploads/images/hebergements
+    path.images.gallery: /uploads/images/photos
 
 vich_uploader:
     db_driver: orm
@@ -12,3 +13,6 @@ vich_uploader:
         accommodation:
             uri_prefix: '%path.images.accommodation%'
             upload_destination: '%kernel.project_dir%/public%path.images.accommodation%'
+        gallery:
+            uri_prefix: '%path.images.gallery%'
+            upload_destination: '%kernel.project_dir%/public%path.images.gallery%'

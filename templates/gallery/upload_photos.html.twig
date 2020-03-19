@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('gallery') }}
+{% endblock %}
+
+{% block headTitle %} {{ text('Albums photos - Titre') }} {% endblock %}
+
+{% block body %}
+
+<a href="{{ path('gallery_show', {'id': gallery.id}) }}" class="btn btn-outline-primary">
+	<i class="fas fa-arrow-left"></i>
+	Revenir à l'album
+</a>
+
+<hr>
+
+<h4>Ajouter des photos à l'album</h4>
+
+<div class="gallery_upload_dropzone dropzone"></div>
+
+<br>
+
+<a href="javascript:void(0);" class="btn btn-primary gallery_upload_btn">Valider et mettre en ligne les photos</a></div>
+<form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+	<script>
+		var uploadUrl = "{{ url('gallery_upload_process', {'id': gallery.id}) }}";
+	</script>
+    {{ encore_entry_script_tags('gallery') }}
+{% endblock %}

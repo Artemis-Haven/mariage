@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('gallery') }}
+{% endblock %}
+
+{% block headTitle %}
+	{{ text('Albums photos - Titre') }}
+{% endblock %}
+
+{% block body %}
+
+<a href="{{ path('gallery') }}" class="btn btn-outline-primary">
+	<i class="fas fa-arrow-left"></i>
+	Revenir aux albums
+</a>
+
+<hr>
+
+<h4>Créer un album photos</h4>
+
+<div class="row">
+	<div class="col-md-6">
+		{{ form_start(form) }}
+			{{ form_row(form.title) }}
+			<br>
+			{{ form_row(form.submit, {'attr': {'class': 'btn btn-success'}}) }}
+			<br>
+		{{ form_end(form) }}
+	</div>
+</div>
+
+	
+{% endblock %}
+
+
+{% block javascript %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('gallery') }}
+{% endblock %}

@@ -30,6 +30,11 @@ class User extends BaseUser
      */
     private $guests;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Gallery", mappedBy="creator")
+     */
+    private $galleries;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -40,6 +45,7 @@ class User extends BaseUser
         parent::__construct();
         $this->gifts = new ArrayCollection();
         $this->guests = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
     }
 
     public function __toString()
@@ -122,5 +128,36 @@ class User extends BaseUser
     public function isInvitedForCeremonyOnly(): bool
     {
         return $this->guests->first()->isInvitedForCeremonyOnly();
+    }
+
+    /**
+     * @return Collection|Gallery[]
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->contains($gallery)) {
+            $this->galleries->removeElement($gallery);
+            // set the owning side to null (unless already changed)
+            if ($gallery->getCreator() === $this) {
+                $gallery->setCreator(null);
+            }
+        }
+
+        return $this;
     }
 }

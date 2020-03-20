@@ -2,6 +2,7 @@ import '../css/gallery.css';
 
 const $ = require('jquery');
 window.Dropzone = require('dropzone/dist/min/dropzone.min');
+require('magnific-popup');
 
 Dropzone.autoDiscover = false;
 $(function () {
@@ -49,5 +50,35 @@ $(function () {
 $('.delete-photo-btn').click(function(e) {
     if (!confirm('Etes-vous sûr de vouloir supprimer cette photo ?')) {
         e.preventDefault();
+    }
+});
+
+$.extend(true, $.magnificPopup.defaults, {
+    tClose: 'Fermer (Esc)', // Alt text on close button
+    tLoading: 'Chargement des photos...', // Text that is displayed during loading. Can contain %curr% and %total% keys
+    gallery: {
+        tPrev: 'Précédent', // Alt text on left arrow
+        tNext: 'Suivant', // Alt text on right arrow
+        tCounter: '%curr% sur %total%' // Markup for "1 of 7" counter
+    },
+    image: {
+        tError: '<a href="%url%">L\'image</a> n\'a pas pu être chargée.' // Error message when image could not be loaded
+    },
+    ajax: {
+        tError: '<a href="%url%">Le contenu</a> n\'a pas pu être chargée.' // Error message when ajax request failed
+    }
+});
+
+$('.gallery-container').magnificPopup({
+    delegate: 'a', // child items selector, by clicking on it popup will open
+    type: 'image',
+    gallery: {
+        enabled: true
+    },
+    disableOn: 600,
+    image: {
+        titleSrc: function (item) {
+            return "<a href='" + item.el.prop('href') + "'>Lien permanent vers la photo</a>";
+        }
     }
 });

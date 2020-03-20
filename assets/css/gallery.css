@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import "~dropzone/dist/min/dropzone.min.css";
+@import "~magnific-popup/dist/magnific-popup.css";
 
 #photo-stack-container {
 	text-align: center;

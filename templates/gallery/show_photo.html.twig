@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('gallery') }}
+{% endblock %}
+
+{% block headTitle %} {{ text('Albums photos - Titre') }} {% endblock %}
+
+{% block body %}
+
+<a href="{{ path('gallery_show', {'id': photo.gallery.id}) }}" class="btn btn-outline-primary">
+	<i class="fas fa-arrow-left"></i>
+	Revenir à l'album
+</a>
+
+<hr>
+
+<p>Photo de
+	<b>{{ photo.gallery.creator }}</b>, mises en ligne le
+	<b>{{ photo.createdAt|date('d/m/Y') }}</b>
+</p>
+
+<div class="text-center">
+	<img src="{{ vich_uploader_asset(photo, 'imageFile') }}" alt="{{ photo.imageName }}" class="img-thumbnail">
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('gallery') }}
+{% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,9 +64,9 @@ class Guest
     private $invitedForCeremonyOnly;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="guests", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="guests", cascade={"persist"})
      */
-    private $user;
+    private $users;
 
     public function __toString()
     {
@@ -78,6 +80,7 @@ class Guest
         $this->attendBrunch = false;
         $this->veggie;
         $this->invitedForCeremonyOnly = true;
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,14 +196,28 @@ class Guest
         return $this;
     }
 
-    public function getUser(): ?User
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
-    public function setUser(?User $user): self
+    public function addUser(User $user): self
     {
-        $this->user = $user;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
 
         return $this;
     }

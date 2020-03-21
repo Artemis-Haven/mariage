@@ -26,7 +26,7 @@ class User extends BaseUser
     private $gifts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Guest", mappedBy="user", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Guest", mappedBy="users", cascade={"persist"})
      */
     private $guests;
 
@@ -96,7 +96,7 @@ class User extends BaseUser
     {
         if (!$this->guests->contains($guest)) {
             $this->guests[] = $guest;
-            $guest->setUser($this);
+            $guest->addUser($this);
         }
 
         return $this;
@@ -106,10 +106,7 @@ class User extends BaseUser
     {
         if ($this->guests->contains($guest)) {
             $this->guests->removeElement($guest);
-            // set the owning side to null (unless already changed)
-            if ($guest->getUser() === $this) {
-                $guest->setUser(null);
-            }
+            $guest->removeUser($this);
         }
 
         return $this;

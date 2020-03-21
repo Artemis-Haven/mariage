@@ -28,7 +28,7 @@ class AnswerType extends AbstractType
                 
                 $user = $event->getData();
                 foreach ($user->getGuests() as $guest) {
-                    $guest->setUser($user);
+                    $guest->addUser($user);
                     if ($guest->getId() == null) {
                         $guest->setInvitedForCeremonyOnly($user->isInvitedForCeremonyOnly());
                     }

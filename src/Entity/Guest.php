@@ -62,13 +62,22 @@ class Guest
     private $invitedForCeremonyOnly;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="guests")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="guests", cascade={"persist"})
      */
     private $user;
 
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->attendCeremony = false;
+        $this->attendMeal = false;
+        $this->attendBrunch = false;
+        $this->veggie;
+        $this->invitedForCeremonyOnly = true;
     }
 
     public function getId(): ?int

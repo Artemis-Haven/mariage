@@ -26,7 +26,7 @@ class User extends BaseUser
     private $gifts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Guest", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Guest", mappedBy="user", cascade={"persist"})
      */
     private $guests;
 

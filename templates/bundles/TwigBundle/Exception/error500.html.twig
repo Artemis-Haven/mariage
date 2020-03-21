@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>Une erreur interne est survenue.</h1>
+
+        <br>
+        
+        <p>
+            Si cette erreur persiste, contactez-nous par e-mail pour que nous réglions le problème.
+        </p>
+
+        <br>
+        
+        <p>
+            <a class="btn btn-primary" href="{{ path('homepage') }}">Retourner à la page d'accueil</a>
+        </p>
+    </div>
+
+{% endblock %}

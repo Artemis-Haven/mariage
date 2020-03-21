@@ -11,8 +11,19 @@
 </head>
 <body class="{{ app.request.attributes.get('_route') }}">
     {% include '_navbar.html.twig' %}
+
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="container flash-container alert alert-dismissible flash-{{ type }}" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
     
-    <div class="container">
+    <div class="container main-container">
         {% block head %}
             <head>
                 <h1>{% block headTitle %}{% endblock %}</h1>

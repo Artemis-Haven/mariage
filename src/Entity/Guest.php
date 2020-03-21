@@ -224,16 +224,19 @@ class Guest
 
     public function hasAnswered(): ?bool
     {
-        return 
+        return $this->answeredAt != null;
+    }
+
+    public function setAnswered(): self
+    {
+        if (
             ($this->attendCeremony === true) || 
             ($this->attendMeal === true) || 
             ($this->attendBrunch === true) || 
-            ($this->absent === true);
-    }
-
-    public function setAnswered(?bool $answered): self
-    {
-        $this->answeredAt = new \DateTime('now');
+            ($this->absent === true)
+        ) {
+            $this->answeredAt = new \DateTime('now');
+        }
 
         return $this;
     }

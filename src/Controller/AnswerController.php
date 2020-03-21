@@ -46,6 +46,9 @@ class AnswerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('submit')->isClicked()) {
+                foreach ($user->getGuests() as $guest) {
+                    $guest->setAnswered();
+                }
                 $em->persist($user);
                 $em->flush();
 

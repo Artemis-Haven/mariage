@@ -6,8 +6,4 @@
 
     {{ text('Accueil - Texte') }}
 
-    {% if not app.user.hasAnswered %}
-        <a href="{{ path('answer_form') }}" class="btn btn-primary">Cliquez ici pour donner votre réponse</a>
-    {% endif %}
-
 {% endblock %}

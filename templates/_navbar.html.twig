@@ -20,9 +20,11 @@
                         <li class="nav-item {% if route == 'access_map' %} active {% endif %}">
                             <a class="nav-link" href="{{ path('access_map') }}">Plan d'accès</a>
                         </li>
-                        <li class="nav-item {% if route == 'accommodations' %} active {% endif %}">
-                            <a class="nav-link" href="{{ path('accommodations') }}">Hébergements</a>
-                        </li>
+                        {% if not app.user.isInvitedForCeremonyOnly %}
+                            <li class="nav-item {% if route == 'accommodations' %} active {% endif %}">
+                                <a class="nav-link" href="{{ path('accommodations') }}">Hébergements</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item {% if route == 'answer' %} active {% endif %}">
                             <a class="nav-link" href="{{ path('answer') }}">Votre réponse</a>
                         </li>

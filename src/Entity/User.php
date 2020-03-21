@@ -127,6 +127,9 @@ class User extends BaseUser
 
     public function isInvitedForCeremonyOnly(): bool
     {
+        if ($this->guests->isEmpty()) {
+            return true;
+        }
         return $this->guests->first()->isInvitedForCeremonyOnly();
     }
 

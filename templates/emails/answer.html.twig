@@ -2,7 +2,7 @@
 	Nouvelle réponse de {{ user }} !
 </strong>
 
-{% set ceremonyOnly = (user.guests|first).invitedForCeremonyOnly %}
+{% set ceremonyOnly = user.invitedForCeremonyOnly %}
 
 
 {% if ceremonyOnly %}

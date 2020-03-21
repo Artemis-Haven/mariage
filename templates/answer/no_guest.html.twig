@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('answer_ceremony_only_form') }}
+{% endblock %}
+
+{% block headTitle %} {{ text('Réponse - Titre') }} {% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('answer') }}" class="btn btn-outline-primary">
+        <i class="fas fa-arrow-left"></i>
+        Retour
+    </a>
+
+    <hr>
+
+    {{ text('Formulaire de réponse (Aucun invité associé) - Texte') }}
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('answer_ceremony_only_form') }}
+{% endblock %}

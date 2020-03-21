@@ -5,7 +5,7 @@ fos_ck_editor:
         config_with_uploadable_images:
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
-            toolbar: standard
+            toolbar: full
 
 twig:
     form_themes:

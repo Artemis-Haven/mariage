@@ -14,7 +14,10 @@
 
 <a href="{{ path('gallery_new') }}" class="btn btn-primary">Créez un nouvel album et ajoutez vos photos</a>
 
-<div id="photo-stack-container">
+<br><br>
+
+
+<div id="photo-stack-container" class="row justify-content-around">
 	{% for gallery in galleries if gallery.photos is not empty and not gallery.contest %}
 		<a class="photo-stack" href="{{ path('gallery_show', {'id': gallery.id}) }}">
 			<div>

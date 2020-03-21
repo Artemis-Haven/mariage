@@ -10,12 +10,12 @@ $(function () {
     var dropzone = new Dropzone(".gallery_upload_dropzone", {
         url: uploadUrl,
         paramName: "file",
-        maxFilesize: 4,
-        maxFiles: 6,
-        parallelUploads: 6,
+        maxFilesize: 5,
+        maxFiles: 30,
+        parallelUploads: 2,
         acceptedFiles: 'image/*',
         autoProcessQueue: false,
-        uploadMultiple: true,
+        uploadMultiple: false,
         dictDefaultMessage: "Cliquez ici pour ajouter des photos depuis votre ordinateur",
         init: function () {
             this.on("success", function (file, response) {

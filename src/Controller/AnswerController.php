@@ -33,7 +33,16 @@ class AnswerController extends AbstractController
     public function form(Request $request, \Swift_Mailer $mailer)
     {
         $user = $this->getUser();
-        $ceremonyOnly = $user->getGuests()->first()->isInvitedForCeremonyOnly();
+        if ($this->getUser()->getGuests()->isEmpty()) {
+            $email = (new \Swift_Message("Mariage - " . $user . " n'a aucun invité associé !"))
+                ->setFrom($this->getParameter('mail_from'))
+                ->setTo($this->getParameter('mail_from'))
+                ->setBody($user . " n'a aucun invité associé !", 'text/html')
+            ;
+            $mailer->send($email);
+            return $this->render('answer/no_guest.html.twig');
+        }
+        $ceremonyOnly = $user->isInvitedForCeremonyOnly();
         $form = $this->createForm(AnswerType::class, $user, ['ceremonyOnly' => $ceremonyOnly])
             ->add('submit', FormType\SubmitType::class, ['label' => 'Valider']);
 

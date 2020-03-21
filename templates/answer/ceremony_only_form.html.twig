@@ -9,6 +9,13 @@
 
 {% block body %}
 
+    <a href="{{ path('answer') }}" class="btn btn-outline-primary">
+        <i class="fas fa-arrow-left"></i>
+        Retour
+    </a>
+
+    <hr>
+
     {{ text('Formulaire de réponse (Cérémonie uniquement) - Texte') }}
 
     {{ form_start(form) }}
@@ -40,7 +47,7 @@
                             <div class="state p-danger"><label></label></div>
                         </div>
                         <span class="d-lg-none">
-                            <span class="form-check-label" for="{{ form_guest.veggie.vars.id }}">Option végétarienne</span>
+                            <span class="form-check-label" for="{{ form_guest.absent.vars.id }}">Ne viendra pas</span>
                         </span>
                     </div>
                 </div>

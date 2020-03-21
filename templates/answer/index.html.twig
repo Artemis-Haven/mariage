@@ -3,7 +3,7 @@
 {% block headTitle %} {{ text('Réponse - Titre') }} {% endblock %}
 
 {% block body %}
-    {% set ceremonyOnly = (guests|first).invitedForCeremonyOnly %}
+    {% set ceremonyOnly = app.user.invitedForCeremonyOnly %}
 
     {% if ceremonyOnly %}
         {{ text('Votre réponse (Cérémonie uniquement) - Texte') }}

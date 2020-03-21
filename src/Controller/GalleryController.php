@@ -57,6 +57,11 @@ class GalleryController extends AbstractController
      */
     public function editGallery(Request $request, Gallery $gallery)
     {
+        if ($this->getUser() != $gallery->getCreator() && !$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('danger', 'Vous ne pouvez pas modifier cet album.');
+
+            return $this->redirectToRoute('gallery_show', ['id' => $gallery->getId()]);
+        }
         $form = $this->createForm(\App\Form\GalleryType::class, $gallery);
     	$form->handleRequest($request);
 
@@ -88,17 +93,15 @@ class GalleryController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         // @todo access control
         // @todo input validation
-        $files = $request->files->get('file');
+        $file = $request->files->get('file');
 
         /** @var UploadedFile $file */
-        foreach ($files as $file) {
-            $photo = new Photo();
-            $photo->setImageFile($file);
-            $photo->setCreatedAt(new \DateTime('now'));
-            $photo->setImageName($file->getClientOriginalName());
-            $gallery->addPhoto($photo);
-            $em->persist($photo);
-        }
+        $photo = new Photo();
+        $photo->setImageFile($file);
+        $photo->setCreatedAt(new \DateTime('now'));
+        $photo->setImageName($file->getClientOriginalName());
+        $gallery->addPhoto($photo);
+        $em->persist($photo);
 
         $em->flush();
 
@@ -133,7 +136,7 @@ class GalleryController extends AbstractController
     public function deletePhoto(Photo $photo)
     {
         $gallery = $photo->getGallery();
-        if ($this->getUser() != $gallery->getCreator()) {
+        if ($this->getUser() != $gallery->getCreator() && !$this->isGranted('ROLE_ADMIN')) {
             $this->addFlash('danger', 'Vous ne pouvez pas supprimer cette photo.');
 
             return $this->redirectToRoute('gallery_show', ['id' => $gallery->getId()]);

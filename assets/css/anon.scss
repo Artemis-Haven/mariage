@@ -2,7 +2,11 @@
 @import "~bootstrap/scss/variables";
 
 // Bootstrap overrides
-$primary: #790d0d;
+$theme-colors: (
+  "secondary": #6f2020,
+  "success": #308a45,
+);
+$link-color: #204f82;
 $enable-rounded: false;
 $input-bg: rgba(0, 0, 0, .5);
 $input-border-color: rgba(0, 0, 0, .6);

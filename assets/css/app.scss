@@ -1,9 +1,12 @@
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
 // Bootstrap overrides
-$primary: #790d0d;
+$theme-colors: (
+  "secondary": #6f2020,
+  "success": #308a45
+);
+$link-color: #204f82;
 $gray-400: #ced4da;
 $enable-rounded: false;
 $input-bg: rgba(0, 0, 0, .5);

@@ -42,6 +42,7 @@ class WeddingListController extends AbstractController
     		];
     		$polyline[] = [(float) $item->getLatitude(), (float) $item->getLongitude()];
         }
+        $polyline[] = [(float) $listItems[0]->getLatitude(), (float) $listItems[0]->getLongitude()];
         
         return [
         	'listItems' => $listItems,

@@ -48,6 +48,20 @@ $(function () {
         }
     ).addTo(myMap);
 
+    if (!ceremonyOnly) {
+        var marker4 = L.marker(
+            [47.027581, 2.2194041],
+            {
+                icon: L.icon({
+                    iconUrl: '/images/map/map_pin_4.png',
+                    iconSize: [48, 48],
+                    iconAnchor: [24, 48]
+                }),
+                zIndexOffset: 100
+            }
+        ).addTo(myMap);
+    }
+
     marker1.bindPopup(generatePopup(
         'Mairie de Bourges', 
         '/images/map/place_1.png',
@@ -69,6 +83,15 @@ $(function () {
         '',
         'https://www.google.com/maps/dir//Villeneuve-sur-Cher,+18400/@47.0352519,2.1986276,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x47faeeca50e0145f:0x9e14b9984c96ae84!2m2!1d2.1969953!2d47.0344293!3e0'
     ));
+    if (!ceremonyOnly) {
+        marker4.bindPopup(generatePopup(
+            'Camping La Noue de l’Anse  ',
+            '/images/map/place_4.png',
+            'Coord. GPS : 47.027581, 2.2194041 \n Via la route D16 \n 18400 Villeneuve-sur-Cher',
+            '',
+            "https://www.google.com/maps/dir//La+Noue+de+l'Anse,+18400+Villeneuve-sur-Cher"
+        ));
+    }
 
     function generatePopup(title, icon, address, rendezvous, link)
     {

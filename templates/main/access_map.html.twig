@@ -21,5 +21,8 @@
 
 {% block javascript %}
     {{ parent() }}
+    <script>
+        var ceremonyOnly = {{ app.user.invitedForCeremonyOnly ? 'true' : 'false' }};
+    </script>
     {{ encore_entry_script_tags('access_map') }}
 {% endblock %}

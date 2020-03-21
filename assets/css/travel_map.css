@@ -150,8 +150,6 @@
     background-size: cover;
     text-transform: uppercase;
     font-family: 'Arial', sans-serif;
-    -webkit-filter: contrast(80%) sepia(40%) grayscale(20%);
-    filter: contrast(80%) sepia(40%) grayscale(20%);
     box-sizing: border-box;
     border: 10px solid #fff;
 }

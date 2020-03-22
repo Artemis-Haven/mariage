@@ -1,6 +1,6 @@
 <strong>Votre compte a été activé !</strong>
 <p>
-    Vous pouvez désormais vous connecter sur le site de notre mariage <a href="{{ url('fos_user_security_login') }}">en cliquant ici</a>.
+    Vous pouvez désormais vous connecter sur le site de notre mariage <a href="{{ url('fos_user_security_login', {'username': user.username}) }}">en cliquant ici</a>.
 </p>
 <p>
     Rappel de votre identifiant : <strong>{{ user.username }}</strong>

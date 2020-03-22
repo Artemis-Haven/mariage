@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
     <title>Mariage de Manon et Rémi</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -12,16 +13,18 @@
 <body class="{{ app.request.attributes.get('_route') }}">
     {% include '_navbar.html.twig' %}
 
-    {% for type, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="container flash-container alert alert-dismissible flash-{{ type }}" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+    {% block flashes %}
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="container flash-container alert alert-dismissible flash-{{ type }}" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% endblock %}
     
     <div class="container main-container">
         {% block head %}

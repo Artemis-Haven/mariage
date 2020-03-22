@@ -1,23 +1,12 @@
 {% for item in listItems %}
     <div class="wedding-list-item card">
         <strong class="title">{{ item }}</strong>
-        <div class="amount">
-            <strong>Montant : {{ item.price }} € </strong>
-            {% if item.gifted %}
-                Déjà financé !
-            {% elseif item.alreadyFundedAmount > 0 %}
-                dont {{ item.alreadyFundedAmount }} € déjà financés, soit <strong>{{ item.price - item.alreadyFundedAmount }} €</strong> restants.
-            {% endif %}
-        </div>
         <div class="row">
             <div class="col-md-4"><img class="img-thumbnail" src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="Photo de {{ item }}"></div>
             <div class="col-md-8">
                 <p>{{ item.description }}</p>
             </div>
         </div>
-        {% if not item.gifted %}
-            <h4><a href="{{ path('wedding_list_contribute', {'id': item.id}) }}">Cliquez ici pour participer</a></h4>
-        {% endif %}
     </div>
     <br>
 {% else %}

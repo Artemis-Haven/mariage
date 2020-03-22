@@ -3,8 +3,9 @@
 
 // Bootstrap overrides
 $theme-colors: (
-  "secondary": #6f2020,
-  "success": #308a45
+	"primary": #2476ce,
+	"secondary": #6f2020,
+	"success": #308a45
 );
 $link-color: #204f82;
 $gray-400: #ced4da;
@@ -46,6 +47,8 @@ body {
 	background-image: url('/images/background.jpg');
 	background-position: center top;
 	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: #ccaa91;
 	height: 100vh;
 }
 
@@ -57,6 +60,8 @@ body > div.container {
 	background: url('/images/background_blur.jpg');
 	background-position: center top;
 	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: #f1e9de;
 }
 
 .flash-container {

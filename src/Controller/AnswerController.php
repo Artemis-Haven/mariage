@@ -70,7 +70,6 @@ class AnswerController extends AbstractController
                 return $this->redirectToRoute('answer');
             } elseif ($form->get('addGuest')->isClicked()) {
                 $guest = new \App\Entity\Guest();
-                $guest->setName("Nom de l'invité(e)");
                 $this->getUser()->addGuest($guest);
                 $form = $this->createAnswerForm();
             }

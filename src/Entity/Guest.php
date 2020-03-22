@@ -237,6 +237,14 @@ class Guest
         ) {
             $this->answeredAt = new \DateTime('now');
         }
+        if (
+            ($this->attendCeremony === false) && 
+            ($this->attendMeal === false) && 
+            ($this->attendBrunch === false) && 
+            ($this->absent === false)
+        ) {
+            $this->answeredAt = null;
+        }
 
         return $this;
     }

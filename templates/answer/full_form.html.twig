@@ -30,7 +30,7 @@
         {% for form_guest in form.guests %}
             <div class="form-row">
                 <div class="col-xs-12 col-sm-6 col-lg">
-                    {{ form_widget(form_guest.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom et prénom'}}) }}
+                    {{ form_widget(form_guest.name, {'attr': {'class': 'form-control', 'placeholder': "Nom et prénom de l'invité(e)"}}) }}
                 </div>
                 <div class="col-md-12 col-lg text-lg-center">
                     <div class="form-check">
@@ -83,7 +83,7 @@
                             <div class="state p-danger"><label></label></div>
                         </div>
                         <span class="d-lg-none">
-                            <span class="form-check-label" for="{{ form_guest.veggie.vars.id }}">Option végétarienne</span>
+                            <span class="form-check-label" for="{{ form_guest.absent.vars.id }}">Ne viendra pas</span>
                         </span>
                     </div>
                 </div>

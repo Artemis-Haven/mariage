@@ -29,8 +29,23 @@ class MainController extends AbstractController
      * @Route("/validation", name="waiting_for_validation")
      * @Template
      */
-    public function waitingForValidation()
+    public function waitingForValidation(\Swift_Mailer $mailer)
     {
+        $user = $this->getDoctrine()->getManager()->getRepository(\App\Entity\User::class)->findOneBy([], ['id' => 'DESC']);
+        $email = (new \Swift_Message("Mariage - " . $user . " a créé son compte."))
+            ->setFrom($this->getParameter('mail_from'))
+            ->setTo($this->getParameter('mail_from'))
+            ->setBody(
+                $this->renderView(
+                    'emails/new_account_alert.html.twig', 
+                    [
+                        'user' => $user
+                    ]
+                ),
+                'text/html'
+            );
+        $mailer->send($email);
+
         return [];
     }
     

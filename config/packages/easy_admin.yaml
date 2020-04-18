@@ -113,6 +113,7 @@ easy_admin:
                     - { type: 'section', label: '' }
                     - { property: 'answered', label: 'Remplir le formulaire de réponse à la place de l''invité ?', type: 'checkbox' }
                     - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+                    - { property: 'absent', label: 'Ne viendra pas'}
 
         CeremonyGuestWhoReplied:
             class: App\Entity\Guest
@@ -128,6 +129,7 @@ easy_admin:
                 fields:
                     - { property: 'name', label: 'Nom' }
                     - { property: 'attendCeremony', label: 'Participe à la cérémonie'}
+                    - { property: 'absent', label: 'Ne viendra pas'}
 
         FullGuestWaiting:
             class: App\Entity\Guest
@@ -147,6 +149,7 @@ easy_admin:
                     - { property: 'attendBrunch', label: 'Participe au brunch'}
                     - { property: 'veggie', label: 'Végétarien.ne'}
                     - { property: 'specialDiet', label: 'Régime alimentaire spécial'}
+                    - { property: 'absent', label: 'Ne viendra pas'}
 
         FullGuestWhoReplied:
             class: App\Entity\Guest
@@ -170,3 +173,4 @@ easy_admin:
                     - { property: 'attendBrunch', label: 'Participe au brunch'}
                     - { property: 'veggie', label: 'Végétarien.ne'}
                     - { property: 'specialDiet', label: 'Régime alimentaire spécial'}
+                    - { property: 'absent', label: 'Ne viendra pas'}

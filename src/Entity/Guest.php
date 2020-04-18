@@ -227,7 +227,7 @@ class Guest
         return $this->answeredAt != null;
     }
 
-    public function setAnswered(): self
+    public function setAnswered(bool $answered): self
     {
         if (
             ($this->attendCeremony === true) || 

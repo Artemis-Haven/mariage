@@ -9,7 +9,7 @@
         "leaflet-polylinedecorator": "^1.6.0",
         "leaflet.polyline.snakeanim": "^0.2.0",
         "mobile-detect": "^1.4.4",
-        "node-sass": "^4.13.1",
+        "node-sass": "^7.0.0",
         "overlapping-marker-spiderfier-leaflet": "^0.2.7",
         "popper.js": "^1.16.1",
         "pretty-checkbox": "^3.0.3",
